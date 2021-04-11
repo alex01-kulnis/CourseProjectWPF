@@ -1,0 +1,56 @@
+﻿<Window x:Class="CourseProjectWPF.Views.AuthView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectWPF"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        mc:Ignorable="d"
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"		
+        FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+        Title="AuthView" Height="550" Width="400" WindowStyle="None" ResizeMode="NoResize" 
+        Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
+    <Window.Resources>
+        <Color x:Key="backgr">#FF33C2F7</Color>
+    </Window.Resources>
+    <Grid>
+        <materialDesign:ColorZone   Padding="16" Height="62" Background="#FF33C2F7">
+            <StackPanel Orientation="Horizontal">
+                <materialDesign:PackIcon Kind="Hospital" Height="30" Width="30"/>
+                <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">MedicalApp</TextBlock>
+                <Button materialDesign:ButtonAssist.CornerRadius="6" Height="auto" Command="{Binding close}" Background="#FF33C2F7" 
+                        Margin="187 0 0 0" BorderBrush="#FF33C2F7" Foreground="Black" >
+                    <materialDesign:PackIcon Kind="CloseBox"/>
+                </Button>
+            </StackPanel>
+        </materialDesign:ColorZone>
+
+        <TextBox BorderBrush="Black" Padding="2, 0,0,0" Height="30" Width="170" 
+                 materialDesign:HintAssist.Hint="Логин" 
+                 VerticalContentAlignment="Center"  x:Name="login_textbox" Background="White" Margin="119,190,111,330" 
+                 SelectionBrush="{x:Null}" Text="{Binding Login}" />
+
+        <PasswordBox BorderBrush="Black"  Padding="2, 0,0,0" 
+                     materialDesign:HintAssist.Hint="Пароль" VerticalContentAlignment="Center" Height="30" Width="170"
+                     x:Name="password_box" Background="White"  Margin="119,270,111,250" PasswordChanged="password_box_PasswordChanged" >
+        </PasswordBox>
+        <TextBlock Text="{Binding ErrorMes}" Foreground="#FFFB0C0C" 
+                   Style="{StaticResource MaterialDesignBody2TextBlock}" TextDecorations="Underline"
+                   TextAlignment="Center" Margin="95,340,99,184"/>
+
+        <Button Command="{Binding auth}"  Height="Auto" Margin="70,385,62,127"  materialDesign:ButtonAssist.CornerRadius="8" 
+                Content="Войти" Foreground="Black" >
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource backgr}"/>
+            </Button.Background>
+        </Button>
+
+        <Button Command="{Binding registration}" Height="Auto" Margin="70,455,62,57" materialDesign:ButtonAssist.CornerRadius="8"
+                  Content="Регистрация" Foreground="Black" >
+            <Button.Background>
+                <SolidColorBrush Color="{DynamicResource backgr}"/>
+            </Button.Background>
+        </Button>
+    </Grid>
+</Window>
