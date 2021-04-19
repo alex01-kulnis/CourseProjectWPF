@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -24,26 +25,25 @@ namespace CourseProjectWPF.Views
     {
         MainAdminWindowModel a = new MainAdminWindowModel();
         
-        
         public MainAdminWindow()
         {
             InitializeComponent();
 
-			try
-			{
+            try
+            {
                 DataContext = a;
                 //fill data grid
                 fillDataFromDBtoDatagrid();
                 // window center to screen 
                 WindowStartupLocation = WindowStartupLocation.CenterScreen;
                 // disable edit and remove buttons
-                //buttonsEditRemoveStateChange();
+                buttonsEditRemoveStateChange();
             }
-			catch (Exception ex)
-			{
-				MessageBox.Show(ex.Message);
-			}
-		}
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+        }
 
         void fillDataFromDBtoDatagrid()
         {
@@ -58,6 +58,12 @@ namespace CourseProjectWPF.Views
             {
                 MessageBox.Show(ex.Message);
             }
+        }
+
+        // data grid selection changed event
+        private void datagridPatiens_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            buttonsEditRemoveStateChange();
         }
 
         void buttonsEditRemoveStateChange()
@@ -92,7 +98,7 @@ namespace CourseProjectWPF.Views
                     int year = Convert.ToInt32(textboxDateOfBirth.Text);
                     queryable = queryable.Where(p => p.BDay.Year == year);
                 }
-                
+
                 // put query result to data grid table
                 datagridPatiens.ItemsSource = queryable.ToList();
             }
@@ -111,6 +117,119 @@ namespace CourseProjectWPF.Views
             catch (Exception ex)
             {
                 MessageBox.Show(ex.Message);
+            }
+        }
+
+        // show popup notification
+        void showNotification(string message)
+        {
+            // SnackbarThree - xaml name of MaterialDesign.Snackbar  
+            var messageQueue = SnackbarThree.MessageQueue;
+
+            //the message queue can be called from any thread
+            Task.Run(() => messageQueue.Enqueue(message));
+        }
+
+        private void buttonAdd_Click(object sender, RoutedEventArgs e)
+        {
+            // open add patient window
+            AdminAddClient addEditWindow = new AdminAddClient();
+            addEditWindow.Title = "Add patient";
+
+            // update data grid if patient was added 
+            if (addEditWindow.ShowDialog() == true)
+            {
+                fillDataFromDBtoDatagrid();
+                // focus on the added patient 
+                datagridPatiens.SelectedIndex = datagridPatiens.Items.Count - 1;
+                // scroll patient list to the added patient
+                //datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                // popup notification
+                //showNotification("The patient was added");
+            }
+        }
+
+        private void onlyLetters(object sender, TextCompositionEventArgs e)
+        {
+            Regex regex = new Regex("^[a-zA-Zа-яА-Я]{1,}$");
+            e.Handled = !regex.IsMatch(e.Text);
+        }
+
+        private void onlyDig(object sender, TextCompositionEventArgs e)
+        {
+            e.Handled = IsStringNumeric(e.Text);
+        }
+
+        // check string has numbers
+        bool IsStringNumeric(string str)
+        {
+            return Regex.IsMatch(str, "[^0-9]+");
+        }
+
+        private void textbox_restrictSpace(object sender, KeyEventArgs e)
+        {
+            if (e.Key == Key.Space)
+                e.Handled = true;
+        }
+
+        private void buttonRemove_Click(object sender, RoutedEventArgs e)
+        {
+            // check patient was chosen in list
+            if (datagridPatiens.SelectedItems.Count <= 0) 
+                return;
+            
+                
+            // get selected patient
+            User pacient = datagridPatiens.SelectedItem as User;
+            // show confirmation message box
+            if (MessageBox.Show($"Вы уверенны, что хотите удалить {pacient.FirstName + " " + pacient.Surname} ?",
+                "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                using (MyDbContext db = new MyDbContext())
+                {
+                    // save position to restore
+                    int selectedIndex = datagridPatiens.SelectedIndex;
+
+                    // find patient in db
+                    pacient = db.Users.FirstOrDefault(p => p.Id == pacient.Id);
+                    db.Users.Remove(pacient);                    
+                    // save
+                    db.SaveChanges();
+                    // update data grid list
+                    fillDataFromDBtoDatagrid();
+                    // scroll patient list to the previous position
+                    //datagridPatiens.ScrollIntoView(datagridPatiens.Items[Math.Min(selectedIndex, datagridPatiens.Items.Count - 1)]);
+                    // popup notification
+                    MessageBox.Show("Пациент удалён");
+                    showNotification("The patient was removed");
+                }
+            }
+        }
+
+        // edit patient button click
+        private void buttonEdit_Click(object sender, RoutedEventArgs e)
+        {
+            // check patient was chosen in list
+            if (datagridPatiens.SelectedItems.Count <= 0)
+                return;
+
+            // open add patient window with filled fields
+            AdminChangeClient addEditWindow = new AdminChangeClient(datagridPatiens.SelectedItem as User);
+            addEditWindow.Title = "Edit patient";
+            
+            // update data grid if patient was changed 
+            if (addEditWindow.ShowDialog() == true)
+            {
+                // save position to restore
+                int selectedIndex = datagridPatiens.SelectedIndex;
+
+                fillDataFromDBtoDatagrid();
+                // focus on the changed patient from saved position
+                datagridPatiens.SelectedIndex = selectedIndex;
+                // scroll patient list to the changed patient
+                datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                // popup notification
+                showNotification("The patient was edited");
             }
         }
     }

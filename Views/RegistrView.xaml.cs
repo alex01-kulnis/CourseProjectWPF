@@ -5,6 +5,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
 using System.Threading.Tasks;
@@ -40,17 +41,12 @@ namespace CourseProjectWPF.Views
             {               
                 ErrorMessage.Text = "";
                 bool Registration = true;
-                bool Data = true;
+                
                 try
                 {
                     string str = Bday_textbox.ToString();
                     int a = Convert.ToInt32(str = str.Substring(6, 4));
-                    if (a >= 2005)
-                    {
-                        Data = false;
-                        ErrorMessage.Text = "Некорректная дата";
-                    }
-                    else
+                    if (a < 2006 && a >= 1900)
                     {
                         SqlParameter param = new SqlParameter("@Login", login_textbox.Text);
                         var users = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Login LIKE @Login", param);
@@ -65,15 +61,16 @@ namespace CourseProjectWPF.Views
                         {
                             user = new User();
                             user.FirstName = Name_textbox.Text.Trim();
-                            user.Surname = Surname_textbox.Text.Trim();
+                            user.Surname = Surname_textbox.Text.Trim();                            
                             user.BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
                                 System.Globalization.CultureInfo.InvariantCulture);
                             user.Gender = Gender.Text.Trim();
                             user.Login = login_textbox.Text.Trim();
-                            user.Password = password_box.Password;
-
+                            string Pass = DB.DB.Hash(password_box.Password);                            
+                            user.Password = Pass;
                             db.Users.Add(user);
                             db.SaveChanges();
+                            MessageBox.Show("Регистрация прошла успешна");
 
                             AuthView t = new AuthView();
                             t.Show();
@@ -83,6 +80,10 @@ namespace CourseProjectWPF.Views
                         {
                             ErrorMessage.Text = "Такой логин уже существует";
                         }
+                    }
+                    else
+                    {                        
+                        ErrorMessage.Text = "Некорректная дата";                        
                     }                        
                 }
                 catch (Exception ex) {}

@@ -28,7 +28,7 @@ namespace CourseProjectWPF.ViewModels
             set
             {
                 if (value.Equals("Мужчина"))
-                    this._Gender = "Мужичина";
+                    this._Gender = "Мужчина";
                 else if (value.Equals("Женщина"))
                     this._Gender = "Женщина";
                 RaisePropertiesChanged(nameof(Gender));

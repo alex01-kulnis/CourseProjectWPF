@@ -124,7 +124,7 @@ namespace CourseProjectWPF.ViewModels
             Close();
         }
 
-        public ICommand close => new DelegateCommand(Close);
+        
 
         public ICommand changeacc => new DelegateCommand(Changeacc);
 

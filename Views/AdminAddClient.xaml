@@ -5,12 +5,10 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CourseProjectWPF.Views"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
-        
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"        
         mc:Ignorable="d"
         TextElement.FontWeight="Medium"
-        TextElement.FontSize="16"
-        
+        TextElement.FontSize="16"        
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="RegistrView" Height="565" Width="400" WindowStyle="None" ResizeMode="NoResize"
         Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
@@ -55,7 +53,7 @@
 
         <Label FontSize="14" Content="Имя аккаунта" Background="White" Foreground="Gray"  Margin="36,318,265,220" ></Label>
         <TextBox BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" VerticalContentAlignment="Center" 
-                 x:Name="login_textbox"  Margin="40,350,45,185" Text="{Binding Login}"
+                 x:Name="login_textbox"  Margin="40,350,45,185" Text="{Binding Login}" MaxLength="24"
                  SelectionBrush="{x:Null}" TextChanged="login_textbox_TextChanged" materialDesign:HintAssist.Hint="ivan21"/>
 
         <Label FontSize="14" Content="Пароль" Background="White" Foreground="Gray"  Margin="35,387,305,150" ></Label>
@@ -81,8 +79,5 @@
                 <SolidColorBrush Color="#FF33C2F7"/>
             </Button.Background>
         </Button>
-
-
-
     </Grid>
 </Window>

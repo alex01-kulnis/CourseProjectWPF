@@ -6,6 +6,7 @@ using System;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
@@ -60,26 +61,38 @@ namespace CourseProjectWPF.ViewModels
 
         public ICommand auth => new DelegateCommand(Auth);
 
+        public string Hash(string input)
+        {
+            byte[] hash = Encoding.ASCII.GetBytes(input);
+            MD5 md5 = new MD5CryptoServiceProvider();
+            byte[] hashenc = md5.ComputeHash(hash);
+            string output = "";
+            foreach (var b in hashenc)
+            {
+                output += b.ToString("x2");
+            }
+            return output;
+        }
+
         public void Auth()
         {
             User IsAdmin = null;
             ErrorMes = "";
             User IsUser = null;
 
-            if(Login == null || Password == null || Login == String.Empty)
+            if (Login == null || Password == null || Login == String.Empty || Password == String.Empty)
             {
                 ErrorMes = "Заполните поля";
             }
             else
             {
                 using (MyDbContext db = new MyDbContext())
-                {
-                    IsUser = db.Users.Where(b => b.Login == Login && b.Password == Password).FirstOrDefault();
-
-                    if (IsUser != null) 
-                    {
-                        IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Password && b.Id == 2).FirstOrDefault();
-
+                {                                      
+                    string Pass = DB.DB.Hash(Password);
+                    IsUser = db.Users.Where(b => b.Login == Login && b.Password == Pass).FirstOrDefault();
+                    IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Pass && b.IsAdmin == true).FirstOrDefault();
+                    if (IsUser != null || IsAdmin != null) 
+                    {                       
                         if (IsAdmin != null)
                         {
                             MainAdminWindow sp = new MainAdminWindow();

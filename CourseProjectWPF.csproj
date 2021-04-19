@@ -106,16 +106,21 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
+    <Compile Include="DB\DB.cs" />
     <Compile Include="DB\MyDbContext.cs" />
     <Compile Include="Models\MedCard.cs" />
     <Compile Include="Models\Recording.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\AdminAddClientModel.cs" />
+    <Compile Include="ViewModels\AdminChangeClientModel.cs" />
     <Compile Include="ViewModels\AuthViewModel.cs" />
     <Compile Include="ViewModels\MainAdminWindowModel.cs" />
     <Compile Include="ViewModels\RegistrViewModel.cs" />
     <Compile Include="Views\AdminAddClient.xaml.cs">
       <DependentUpon>AdminAddClient.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\AdminChangeClient.xaml.cs">
+      <DependentUpon>AdminChangeClient.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\MainAdminWindow.xaml.cs">
       <DependentUpon>MainAdminWindow.xaml</DependentUpon>
@@ -127,6 +132,10 @@
       <DependentUpon>RegistrView.xaml</DependentUpon>
     </Compile>
     <Page Include="Views\AdminAddClient.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\AdminChangeClient.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

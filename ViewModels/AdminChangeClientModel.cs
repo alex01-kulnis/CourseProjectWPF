@@ -1,5 +1,4 @@
-﻿using CourseProjectWPF.Views;
-using DevExpress.Mvvm;
+﻿using DevExpress.Mvvm;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,9 +8,8 @@ using System.Windows.Input;
 
 namespace CourseProjectWPF.ViewModels
 {
-    class AdminAddClientModel
+    class AdminChangeClientModel
     {
-
         public void Close()
         {
             foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)
@@ -23,12 +21,11 @@ namespace CourseProjectWPF.ViewModels
             }
         }
 
-        public ICommand close => new DelegateCommand(Close);
-        public ICommand back => new DelegateCommand(Back);
-
         public void Back()
-        {            
+        {
             Close();
         }
+
+        public ICommand back => new DelegateCommand(Back);
     }
 }
