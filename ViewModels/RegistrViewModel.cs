@@ -15,10 +15,6 @@ namespace CourseProjectWPF.ViewModels
 {
     class RegistrViewModel : ViewModelBase
     {
-        
-
-
-        
         User user;
         public RegistrViewModel()
         {
