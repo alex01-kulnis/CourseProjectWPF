@@ -8,7 +8,9 @@ using System.ComponentModel;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CourseProjectWPF.ViewModels
@@ -162,9 +164,7 @@ namespace CourseProjectWPF.ViewModels
                         Login = "";
                     }
                 }
-                catch (Exception ex) 
-                { 
-                }
+                catch (Exception ex){}
             }
         }
 
@@ -185,8 +185,14 @@ namespace CourseProjectWPF.ViewModels
         public void Back()
         {
             AuthView t = new AuthView();
-            t.Show();
             Close();
+            Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+            myThread.SetApartmentState(ApartmentState.STA);
+            myThread.Start();
+            Thread.Sleep(1000);
+            myThread.Abort();
+            t.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            t.Show();
         }   
     }
 }

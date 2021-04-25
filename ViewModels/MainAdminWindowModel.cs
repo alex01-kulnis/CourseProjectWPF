@@ -7,7 +7,9 @@ using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
+using System.Windows;
 using System.Windows.Input;
 
 namespace CourseProjectWPF.ViewModels
@@ -123,16 +125,25 @@ namespace CourseProjectWPF.ViewModels
             t.Show();
             Close();
         }
-
         
-
         public ICommand changeacc => new DelegateCommand(Changeacc);
 
         public void Changeacc()
         {
-            AuthView t = new AuthView();
-            t.Show();
-            Close();
+            if (MessageBox.Show($"Вы уверенны, что вы хотите выйти?",
+                "Подтвердите", MessageBoxButton.YesNo, MessageBoxImage.Question) == MessageBoxResult.Yes)
+            {
+                AuthView t = new AuthView();
+                Close();
+                Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+                myThread.SetApartmentState(ApartmentState.STA);
+                myThread.Start();
+                Thread.Sleep(1000);
+                myThread.Abort();
+                t.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                t.Show();
+            }    
+                
         }
 
         public void Close()

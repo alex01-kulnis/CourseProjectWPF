@@ -1,4 +1,5 @@
-﻿using CourseProjectWPF.DB;
+﻿using BespokeFusion;
+using CourseProjectWPF.DB;
 using CourseProjectWPF.Models;
 using CourseProjectWPF.ViewModels;
 using System;
@@ -53,7 +54,7 @@ namespace CourseProjectWPF.Views
             using (MyDbContext db = new MyDbContext())
             {
                 User IsUser = null;
-                User IsAdmin = null;
+                //User IsAdmin = null;
                 ErrorMessage.Text = "";
                 bool Change = true;
 
@@ -83,10 +84,10 @@ namespace CourseProjectWPF.Views
                                 db.Users.Find(userr.Id).Password = password_box.Password;
                             }
                             db.SaveChanges();
-                            MessageBox.Show("Данные изменены");
+
+                            MaterialMessageBox.Show("Данные изменены", "Уведомление");
                             DialogResult = true;
-                            this.Close();
-                            
+                            this.Close();                            
                         }
                         else
                         {
@@ -116,8 +117,8 @@ namespace CourseProjectWPF.Views
                                 {
                                     db.Users.Find(userr.Id).Password = password_box.Password;
                                 }
-                                db.SaveChanges();
-                                MessageBox.Show("Данные изменены");
+                                db.SaveChanges();                                
+                                MaterialMessageBox.Show("Данные изменены", "Уведомление");
                                 DialogResult = true;
                                 this.Close();
                             }
@@ -131,7 +132,7 @@ namespace CourseProjectWPF.Views
                     {
                         ErrorMessage.Text = "Некорректная дата";
                     }
-                }
+                }                
                 catch  
                 {
                     ErrorMessage.Text = "Такой логин уже существует";

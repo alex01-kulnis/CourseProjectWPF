@@ -2,12 +2,14 @@
 using CourseProjectWPF.Models;
 using CourseProjectWPF.ViewModels;
 using System;
+using BespokeFusion;
 using System.Collections.Generic;
 using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Text.RegularExpressions;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -35,6 +37,7 @@ namespace CourseProjectWPF.Views
             Reg.IsEnabled = false;                        
         }
 
+        #region Button reg 
         private void Reg_Click(object sender, RoutedEventArgs e)
         {
             using (MyDbContext db = new MyDbContext())
@@ -69,12 +72,17 @@ namespace CourseProjectWPF.Views
                             string Pass = DB.DB.Hash(password_box.Password);                            
                             user.Password = Pass;
                             db.Users.Add(user);
-                            db.SaveChanges();
-                            MessageBox.Show("Регистрация прошла успешна");
-
+                            db.SaveChanges();                            
+                            MaterialMessageBox.Show("Регистрация прошла успешна","Уведомление");                            
                             AuthView t = new AuthView();
-                            t.Show();
                             Close();
+                            Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+                            myThread.SetApartmentState(ApartmentState.STA);
+                            myThread.Start();
+                            Thread.Sleep(1000);
+                            myThread.Abort();
+                            t.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                            t.Show();
                         }
                         else
                         {
@@ -86,10 +94,12 @@ namespace CourseProjectWPF.Views
                         ErrorMessage.Text = "Некорректная дата";                        
                     }                        
                 }
-                catch (Exception ex) {}
+                catch (Exception ex) { MaterialMessageBox.Show("Ошибка при подключении к базе данных", "Уведомление"); }
             }
         }
+        #endregion
 
+        #region Validation    
         private void onlyLetters(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[a-zA-Zа-яА-Я]{1,}$");
@@ -163,5 +173,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(Gender.Text))
                 Reg.IsEnabled = true;
         }
+        #endregion
     }
 }

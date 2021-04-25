@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseProjectWPF.Views;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Security.Cryptography;
@@ -20,6 +21,14 @@ namespace CourseProjectWPF.DB
                 output += b.ToString("x2");
             }
             return output;
+        }
+
+        //анимация
+        public static void ShowLoader()
+        {
+            Loader loader = new Loader();
+            loader.ShowDialog();
+            loader.Close();
         }
     }
 }

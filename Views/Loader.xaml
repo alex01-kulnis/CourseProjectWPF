@@ -1,0 +1,16 @@
+﻿<Window x:Class="CourseProjectWPF.Views.Loader"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:CourseProjectWPF.Views"
+        mc:Ignorable="d"        
+        Title="Loader" Height="200" Width="200" Opacity="100" WindowStartupLocation="CenterScreen" AllowsTransparency="True" 
+        WindowStyle="None" Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
+    <Window.Background>
+        <ImageBrush/>
+    </Window.Background>
+    <Grid>
+        <ProgressBar Foreground="#FF33C2F7" Style="{StaticResource MaterialDesignCircularProgressBar}"  Value="45"  IsIndeterminate="True" Width="100" Height="100" />
+    </Grid>
+</Window>

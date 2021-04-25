@@ -1,0 +1,130 @@
+﻿<UserControl x:Class="CourseProjectWPF.Views.CardWindow"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:CourseProjectWPF.Views"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             TextElement.Foreground="Black"
+             TextElement.FontWeight="Medium"
+             TextElement.FontSize="16"        
+             FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
+             MinHeight="620" MinWidth="1220">
+    <Grid Background="White">
+        <StackPanel Orientation="Vertical">
+            <StackPanel Margin="0 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" >
+                <Label FontSize="24" Content="Личная карточка пациента"  Foreground="Red"/>
+            </StackPanel>
+            
+            <StackPanel Margin="75 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" >
+                <Label FontSize="24" Content="Заполните форму :"  Foreground="Black"/>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Margin="0 10 80 10" Orientation="Horizontal">
+                    <Label FontSize="20" Content="Полное Имя :" Background="White" Foreground="Gray" Width="180" Height="40"/>
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="300" Height="40" PreviewTextInput="onlyLetters"
+                 VerticalContentAlignment="Center" x:Name="Name_textbox" Background="White" PreviewKeyDown="textbox_restrictSpace"  
+                 SelectionBrush="{x:Null}" FontSize="20" TextChanged="Name_textbox_TextChanged"
+                 materialDesign:HintAssist.Hint="Иван"/>
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="180" Height="40" Content="Фамилия :" Background="White" Foreground="Gray" ></Label>
+                    <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0"  PreviewTextInput="onlyLetters" PreviewKeyDown="textbox_restrictSpace"
+                 VerticalContentAlignment="Center"  x:Name="Surname_textbox"   Background="White"  Margin="10 0 20 0" 
+                 SelectionBrush="{x:Null}" Width="300" Height="40" FontSize="20" materialDesign:HintAssist.Hint="Кузнецов"
+                              TextChanged="Surname_textbox_TextChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Margin="0 10 80 10" Orientation="Horizontal">
+                    <Label FontSize="20" Content="Отчество :" Background="White" Foreground="Gray" Width="180" Height="40"/>
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="300" Height="40" VerticalContentAlignment="Center"  Background="White"
+                    SelectionBrush="{x:Null}" FontSize="20" materialDesign:HintAssist.Hint="Анатольевич" PreviewTextInput="onlyLetters"
+                              PreviewKeyDown="textbox_restrictSpace" x:Name="Patronymic_textbox" TextChanged="Patronymic_textbox_TextChanged"/>
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="180" Height="40" Content="Пол :" Background="White" Foreground="Gray" ></Label>
+                    <ComboBox Name="Gender" BorderThickness="1" BorderBrush="Black"  Width="300" Height="40" Background="White" 
+                     FontSize="20" Margin="10 0 20 0">
+                        <ComboBoxItem  IsSelected="True">
+                            Мужчина
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            Женщина
+                        </ComboBoxItem>
+                    </ComboBox>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Margin="0 10 80 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="180" Height="40" Content="Дата рождения :" Background="White" Foreground="Gray"/>
+                    <DatePicker DisplayDateStart="1900/01/01" DisplayDateEnd="2004/12/31" BorderThickness="0,0,0,1" BorderBrush="Black" x:Name="Bday_textbox"  
+                   materialDesign:HintAssist.Hint="21.02.1983" SelectedDateChanged="Bday_textbox_SelectedDateChanged"
+                    SelectedDateFormat="Short" Width="300" Height="40" FontSize="20" />
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="180" Height="40" Content="Город/деревня :" Background="White" Foreground="Gray" ></Label>
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="300" Height="40" VerticalContentAlignment="Center"  
+                     Background="White"   SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyLetters"
+                 materialDesign:HintAssist.Hint="Барановичи" PreviewKeyDown="textbox_restrictSpace" x:Name="City_textbox"
+                              TextChanged="City_textbox_TextChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <StackPanel Margin="75 0 31 0" Orientation="Horizontal">
+                    <Label FontSize="20" Width="268" Height="40" Content="Улица/проспект/переулок :" Background="White" Foreground="Gray" ></Label>
+                    <TextBox BorderThickness="1" BorderBrush="Black"  Width="252" Height="40" SelectionBrush="{x:Null}" FontSize="20"
+                 VerticalContentAlignment="Center"  Background="White"  materialDesign:HintAssist.Hint="Гастелло" PreviewTextInput="onlyLetters"
+                             x:Name="Street_textbox" TextChanged="Street_textbox_TextChanged"/>
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="60" Height="40" Content="Дом :" Background="White" Foreground="Gray" ></Label>
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center"  
+                     Background="White"   SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig"
+                 materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="House_textbox" TextChanged="House_textbox_TextChanged"/>
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="86" Height="40" Content="Корпус :" Background="White" Foreground="Gray"/>
+                    <TextBox x:Name="Housing"  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center"  
+                     Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" TextChanged="login_textbox_TextChanged" 
+                 materialDesign:HintAssist.Hint="4a" PreviewKeyDown="textbox_restrictSpace"/>
+                </StackPanel>
+                <StackPanel Margin="0 10" Orientation="Horizontal">
+                    <Label FontSize="20" Width="106" Height="40" Content="Квартира :" Background="White" Foreground="Gray" ></Label>
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="57" Height="40" VerticalContentAlignment="Center"  
+                     Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig"
+                 materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="Flat_textbox" TextChanged="Flat_textbox_TextChanged"/>
+                </StackPanel>
+            </StackPanel>
+
+            <StackPanel Margin="73 0 0 0" Orientation="Vertical" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+                <Label Background="White" Foreground="Gray"  FontSize="20" Width="180" Height="40" VerticalAlignment="Top"
+                       HorizontalAlignment="Left" Content="Фото пациента : " />
+                <StackPanel Orientation="Horizontal">
+                    <StackPanel Orientation="Vertical" Margin="0 0 50 0">
+                        <StackPanel Margin="0 10" Orientation="Horizontal">
+                            <Grid x:Name="AdMainImageWrapper">
+                                <Border x:Name="Border"  BorderBrush="Black" BorderThickness="1">
+                                    <Image x:Name="AdMainImage" Cursor="" Width="140" Height="160" SizeChanged="AdMainImage_Changed"/>
+                                </Border>
+                            </Grid>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Orientation="Vertical" VerticalAlignment="Top" HorizontalAlignment="Left">
+                        <Button x:Name="AddPhotoButton" Content="Выбрать фото" HorizontalAlignment="Center" VerticalAlignment="Center"  
+                                Margin="0 70 0 10" Width="470" Height="50" FontSize="20" BorderBrush="Black" Foreground="Black" Click="AddPhotoButton_Click"/>
+                    </StackPanel>
+                    <Button x:Name="SaveButton" Content="Сохрнаить\Изменить"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="150 180 0 25" 
+                            Width="240" Height="45" FontSize="20" Background="#FF33C2F7" BorderBrush="#5AA9B0" Foreground="Black"
+                            ToolTip="Заполните" Click="Save_Click"/>
+                </StackPanel>
+            </StackPanel>
+            
+        </StackPanel>
+    </Grid>
+</UserControl>

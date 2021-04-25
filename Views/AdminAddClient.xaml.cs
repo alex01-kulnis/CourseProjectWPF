@@ -1,4 +1,5 @@
-﻿using CourseProjectWPF.DB;
+﻿using BespokeFusion;
+using CourseProjectWPF.DB;
 using CourseProjectWPF.Models;
 using CourseProjectWPF.ViewModels;
 using System;
@@ -67,8 +68,8 @@ namespace CourseProjectWPF.Views
                             string Pass = DB.DB.Hash(password_box.Password);
                             user.Password = Pass;
                             db.Users.Add(user);
-                            db.SaveChanges();
-                            MessageBox.Show("Пользователь добавлен");
+                            db.SaveChanges();                            
+                            MaterialMessageBox.Show("Пользователь добавлен", "Уведомление");
                             DialogResult = true;
                             this.Close();
                         }
@@ -86,6 +87,7 @@ namespace CourseProjectWPF.Views
             }
         }
 
+        #region Validation
         private void onlyLetters(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[a-zA-Zа-яА-Я]{1,}$");
@@ -159,5 +161,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(Gender.Text))
                 Reg.IsEnabled = true;
         }
+        #endregion
     }
 }

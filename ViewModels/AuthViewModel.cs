@@ -8,6 +8,7 @@ using System.Data.SqlClient;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Input;
@@ -16,6 +17,7 @@ namespace CourseProjectWPF.ViewModels
 {
     class AuthViewModel : ViewModelBase
     {
+        public string str { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
 
@@ -54,25 +56,17 @@ namespace CourseProjectWPF.ViewModels
         public void Reg()
         {
             RegistrView r = new RegistrView();
-            r.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-            r.Show();
             Close();
+            Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+            myThread.SetApartmentState(ApartmentState.STA);
+            myThread.Start();
+            Thread.Sleep(1000);
+            myThread.Abort();
+            r.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+            r.Show();            
         }
 
         public ICommand auth => new DelegateCommand(Auth);
-
-        public string Hash(string input)
-        {
-            byte[] hash = Encoding.ASCII.GetBytes(input);
-            MD5 md5 = new MD5CryptoServiceProvider();
-            byte[] hashenc = md5.ComputeHash(hash);
-            string output = "";
-            foreach (var b in hashenc)
-            {
-                output += b.ToString("x2");
-            }
-            return output;
-        }
 
         public void Auth()
         {
@@ -87,31 +81,46 @@ namespace CourseProjectWPF.ViewModels
             else
             {
                 using (MyDbContext db = new MyDbContext())
-                {                                      
-                    string Pass = DB.DB.Hash(Password);
-                    IsUser = db.Users.Where(b => b.Login == Login && b.Password == Pass).FirstOrDefault();
-                    IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Pass && b.IsAdmin == true).FirstOrDefault();
-                    if (IsUser != null || IsAdmin != null) 
-                    {                       
-                        if (IsAdmin != null)
+                {   
+                    try
+                    {
+                        string Pass = DB.DB.Hash(Password);
+                        IsUser = db.Users.Where(b => b.Login == Login && b.Password == Pass).FirstOrDefault();
+                        IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Pass && b.IsAdmin == true).FirstOrDefault();
+                        if (IsUser != null || IsAdmin != null)
                         {
-                            MainAdminWindow sp = new MainAdminWindow();
-                            sp.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                            sp.Show();
-                            Close();
+                            App.CurrentUser = IsUser;
+                            if (IsAdmin != null)
+                            {
+                                MainAdminWindow sp = new MainAdminWindow();
+                                Close();
+                                Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+                                myThread.SetApartmentState(ApartmentState.STA);
+                                myThread.Start();
+                                Thread.Sleep(1000);
+                                myThread.Abort();
+                                sp.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                                sp.Show();
+                            }
+                            else
+                            {                                
+                                MainClientWindow sp = new MainClientWindow();
+                                Close();
+                                Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));
+                                myThread.SetApartmentState(ApartmentState.STA);
+                                myThread.Start();
+                                Thread.Sleep(1000);
+                                myThread.Abort();
+                                sp.WindowStartupLocation = WindowStartupLocation.CenterScreen;
+                                sp.Show();
+                            }
                         }
                         else
                         {
-                            MainClientWindow sp = new MainClientWindow();
-                            sp.WindowStartupLocation = WindowStartupLocation.CenterScreen;
-                            sp.Show();
-                            Close();
+                            ErrorMes = "Некорректные данные";
                         }
                     }
-                    else
-                    {
-                        ErrorMes = "Некорректные данные";
-                    }                                                                    
+                    catch (Exception ex) { }                                                                 
                 }
             }
         }

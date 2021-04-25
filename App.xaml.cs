@@ -1,4 +1,5 @@
-﻿using System;
+﻿using CourseProjectWPF.Models;
+using System;
 using System.Collections.Generic;
 using System.Configuration;
 using System.Data;
@@ -13,5 +14,6 @@ namespace CourseProjectWPF
     /// </summary>
     public partial class App : Application
     {
+        public static User CurrentUser { get; set; }
     }
 }

@@ -19,7 +19,7 @@
             </StackPanel>
         </materialDesign:ColorZone>
 
-        <Label FontSize="22" Content="Создание аккаунта" Background="Transparent" Foreground="Black" Margin="36,67,154,461"/>
+        <Label FontSize="22" Content="Ред. аккаунта" Background="Transparent" Foreground="Black" Margin="36,67,154,461"/>
 
         <Label FontSize="14" Content="Имя" Background="White" Foreground="Gray" Margin="36,104,324,433"></Label>
         <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30"  

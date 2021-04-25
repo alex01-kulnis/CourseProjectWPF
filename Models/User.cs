@@ -22,7 +22,7 @@ namespace CourseProjectWPF.Models
         public string FirstName { get; set; }
         public string Surname { get; set; }
         public DateTime BDay { get; set; }
-        public string Gender { get; set; } //0-male, 1 - female
+        public string Gender { get; set; }
         [StringLength(450)]
         [Index(IsUnique = true)]
         public string Login { get; set; }

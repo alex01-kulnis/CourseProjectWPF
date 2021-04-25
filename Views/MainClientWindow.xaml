@@ -3,11 +3,89 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:CourseProjectWPF.Views"
+        xmlns:local="clr-namespace:CourseProjectWPF.Views" 
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
         mc:Ignorable="d"
-        Title="MainClientWindow" Height="450" Width="800" 
-        Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
+        TextElement.FontWeight="Medium"
+        TextElement.FontSize="16"
+        Title="Пользователь" MinHeight="720" Height="720" MinWidth="1280" Width="1280" ResizeMode="CanMinimize"
+        Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico" >
+
+    <Window.Resources>
+        <Storyboard x:Key="MenuOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="251"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="MenuClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="251"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+    </Window.Resources>
+
+    <Window.Triggers>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonOpenMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
+            <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+    </Window.Triggers>
     <Grid>
-        
+        <Grid Height="55" VerticalAlignment="Top" Background="#FF33C2F7">
+            <materialDesign:ColorZone Padding="16" Background="#FF33C2F7">
+                <StackPanel Orientation="Horizontal">
+                    <materialDesign:PackIcon Kind="Hospital" Height="27" Width="30" Margin="543 0 -78 0"/>
+                    <TextBlock VerticalAlignment="Center" Margin="93 0 0 0"><Run Text="MedicalApp"/></TextBlock>
+                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="341 0 0 0">Tел. регистратуры : 61-92-23</TextBlock>
+                </StackPanel>
+            </materialDesign:ColorZone>
+        </Grid>
+        <Grid x:Name="GridMenu" Width="60" HorizontalAlignment="Left" Background="#FF33C2F7" Panel.ZIndex="100">
+            <StackPanel x:Name="MenuControlPanel">
+                <Grid Height="60" Background="#FF33C2F7">
+                    <Button x:Name="ButtonCloseMenu"  Visibility="Collapsed" Width="60" Height="60" Background="{x:Null}"
+                            BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" Click="ButtonCloseMenu_Click"
+                            ToolTip="Свернуть меню">
+                        <materialDesign:PackIcon Kind="ArrowLeft" Foreground="White" Width="30" Height="30"></materialDesign:PackIcon>
+                    </Button>
+                    <Button x:Name="ButtonOpenMenu" Click="ButtonOpenMenu_Click"  Width="60" Height="60" Background="{x:Null}" 
+                            BorderBrush="{x:Null}" VerticalAlignment="Top" HorizontalAlignment="Right" ToolTip="Меню">
+                        <materialDesign:PackIcon Kind="Menu" Foreground="Black" Width="30" Height="30"></materialDesign:PackIcon>
+                    </Button>
+                </Grid>
+                <StackPanel x:Name="MenuButtons" Margin="0 0" ScrollViewer.HorizontalScrollBarVisibility="Disabled" Orientation="Vertical">
+                    <Button x:Name="HomeButton" Height="60" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left" 
+                            ToolTip="Личная карта" Click="CardButton">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="User" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
+                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Личная карта</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="60" x:Name="CreateAdButton" Background="{x:Null}" BorderBrush="{x:Null}" 
+                            HorizontalAlignment="Left" ToolTip="Запись">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Encryption" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
+                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Запись</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="60" x:Name="Exit" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left"
+                            ToolTip="Сменить аккаунт" Command="{Binding ChangeAcc}">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="Import" Width="30" Height="30" VerticalAlignment="Center" 
+                                                     Margin="0 0 10 0"></materialDesign:PackIcon>
+                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Сменить аккаунт</TextBlock>
+                        </StackPanel>
+                    </Button>
+                </StackPanel>
+            </StackPanel>
+            <materialDesign:MaterialDateDisplay   IsEnabled="True" Margin="8" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
+        </Grid>
+        <Grid Background="White" x:Name="GridMain" Margin="60,60,0,0">
+            
+        </Grid>
     </Grid>
 </Window>

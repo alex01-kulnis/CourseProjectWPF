@@ -13,8 +13,15 @@ namespace CourseProjectWPF.Models
         public int ID { get; set; }
         public string Name { get; set; }
         public string Surname { get; set; }
-        public int BDay { get; set; }
-        public string Gender { get; set; } //0-male, 1 - female
+        public string Patronymic { get; set; }
+        public string Gender { get; set; } 
+        public DateTime BDay { get; set; }
+        public string City { get; set; }
+        public string Street { get; set; }
+        public int House { get; set; }
+        public string Housing { get; set; }
+        public int Flat { get; set; }
+        public string Image { get; set; }
 
         public virtual User User { get; set; }
     }

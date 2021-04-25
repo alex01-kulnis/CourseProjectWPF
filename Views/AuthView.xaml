@@ -20,7 +20,7 @@
                 <materialDesign:PackIcon Kind="Hospital" Height="30" Width="30"/>
                 <TextBlock VerticalAlignment="Center" Margin="16 0 0 0">MedicalApp</TextBlock>
                 <Button materialDesign:ButtonAssist.CornerRadius="6" Height="auto" Command="{Binding close}" Background="#FF33C2F7" 
-                        Margin="187 0 0 0" BorderBrush="#FF33C2F7" Foreground="Black" >
+                        Margin="187 0 0 0" BorderBrush="#FF33C2F7" Foreground="Black" ToolTip="Закрыть">
                     <materialDesign:PackIcon Kind="CloseBox"/>
                 </Button>
             </StackPanel>
@@ -33,12 +33,11 @@
 
         <PasswordBox BorderBrush="Black"  Padding="2, 0,0,0" 
                      materialDesign:HintAssist.Hint="Пароль" VerticalContentAlignment="Center" Height="30" Width="170"
-                     x:Name="password_box" Background="White"  Margin="119,270,111,250" PasswordChanged="password_box_PasswordChanged" >
+                     x:Name="password_box" Background="White"  Margin="119,270,111,250" PasswordChanged="password_box_PasswordChanged">
         </PasswordBox>
         <TextBlock Text="{Binding ErrorMes}" Foreground="#FFFB0C0C" 
                    Style="{StaticResource MaterialDesignBody2TextBlock}" TextDecorations="Underline"
                    TextAlignment="Center" Margin="95,340,99,184"/>
-
         <Button Command="{Binding auth}"  Height="Auto" Margin="70,385,62,127"  materialDesign:ButtonAssist.CornerRadius="8" 
                 Content="Войти" Foreground="Black" >
             <Button.Background>
