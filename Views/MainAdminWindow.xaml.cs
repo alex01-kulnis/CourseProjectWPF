@@ -191,12 +191,19 @@ namespace CourseProjectWPF.Views
                     {
                         // save position to restore
                         int selectedIndex = datagridPatiens.SelectedIndex;
-
-                        // find patient in db
                         pacient = db.Users.FirstOrDefault(p => p.Id == pacient.Id);
                         card = db.MedCards.FirstOrDefault(p => p.ID == pacient.Id);
-                        db.Users.Remove(pacient);
-                        db.MedCards.Remove(card);
+                        // find patient in db
+                        if (card == null)
+                        {
+                            db.Users.Remove(pacient);
+                        }
+                        else
+                        {
+                            db.Users.Remove(pacient);
+                            db.MedCards.Remove(card);
+                        }                        
+                        
                         // save
                         db.SaveChanges();
                         // update data grid list

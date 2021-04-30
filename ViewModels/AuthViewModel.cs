@@ -84,6 +84,7 @@ namespace CourseProjectWPF.ViewModels
                 {   
                     try
                     {
+                        
                         string Pass = DB.DB.Hash(Password);
                         IsUser = db.Users.Where(b => b.Login == Login && b.Password == Pass).FirstOrDefault();
                         IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Pass && b.IsAdmin == true).FirstOrDefault();

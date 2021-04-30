@@ -32,9 +32,14 @@ namespace CourseProjectWPF.Views
         {
             InitializeComponent();
             SaveButton.IsEnabled = false;
+            ShowInfo();                                         
+        }
 
+        //вывод информации
+        void ShowInfo()
+        {
             try
-            {                
+            {
                 using (MyDbContext db = new MyDbContext())
                 {
                     User thisUser = db.Users.Find(App.CurrentUser.Id);
@@ -56,28 +61,14 @@ namespace CourseProjectWPF.Views
                         AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
                         Border.BorderThickness = new Thickness(0);
                     }
-                    else                    
-                        MaterialMessageBox.Show("Заполните личную карточку, чтобы записаться к врачу", "Уведомление");                                                              
+                    else
+                        MaterialMessageBox.Show("Заполните личную карточку", "Уведомление");
                 }
             }
-            catch (Exception){}                               
+            catch (Exception) { }
         }
         
-        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                OpenFileDialog openFileDialog = new OpenFileDialog();
-                openFileDialog.Filter = "Фотографии|*.jpg;*.png;*.jpeg;";
-                if (openFileDialog.ShowDialog() == true)
-                {                    
-                    AdMainImage.Source = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute));// отображение \
-                    PathImage = openFileDialog.FileName;
-                    Border.BorderThickness = new Thickness(0);
-                }
-            }
-            catch (Exception ex){}            
-        }
+        
 
         #region Validation
         //spaces
@@ -109,8 +100,7 @@ namespace CourseProjectWPF.Views
             string str = Housing.Text;
             Regex regex = new Regex("^[0-9]{0,3}[а-яА-Я]?$");
             if(!regex.IsMatch(str))            
-                Housing.Text = "";
-                                                                             
+                Housing.Text = "";                                                                             
         }
 
         #region На пустые поля
@@ -269,6 +259,8 @@ namespace CourseProjectWPF.Views
         #endregion
         #endregion
 
+        #region Buttons
+        
         //Сохранение
         private void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -278,47 +270,75 @@ namespace CourseProjectWPF.Views
                 {
                     User thisUser = db.Users.Find(App.CurrentUser.Id);
                     MedCard test = db.MedCards.FirstOrDefault(p => p.ID == thisUser.Id);
-                    if (test == null)
-                    {                        
-                        MedCard card = new MedCard();
-                        card.ID = thisUser.Id;
-                        card.Name = Name_textbox.Text;
-                        card.Surname = Surname_textbox.Text;
-                        card.Patronymic = Patronymic_textbox.Text;
-                        card.Gender = Gender.Text;
-                        card.BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
+
+                    DateTime a = DateTime.Now;                                       
+                    if (Bday_textbox.SelectedDate < a)
+                    {
+                        if (test == null)
+                        {
+                            MedCard card = new MedCard();
+                            card.ID = thisUser.Id;
+                            card.Name = Name_textbox.Text;
+                            card.Surname = Surname_textbox.Text;
+                            card.Patronymic = Patronymic_textbox.Text;
+                            card.Gender = Gender.Text;
+                            card.BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
+                                        System.Globalization.CultureInfo.InvariantCulture);
+                            card.City = City_textbox.Text;
+                            card.Street = Street_textbox.Text;
+                            card.House = Convert.ToInt32(House_textbox.Text);
+                            card.Housing = Housing.Text;
+                            card.Flat = Convert.ToInt32(Flat_textbox.Text);
+                            card.Image = PathImage;
+                            db.MedCards.AddRange(new List<MedCard> { card });
+                            db.SaveChanges();
+                            MaterialMessageBox.Show("Сохранение/Изменение прошло успешна", "Уведомление");
+                        }
+                        else
+                        {
+                            db.MedCards.Find(thisUser.Id).Name = Name_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Surname = Surname_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Patronymic = Patronymic_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Gender = Gender.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
                                     System.Globalization.CultureInfo.InvariantCulture);
-                        card.City = City_textbox.Text;
-                        card.Street = Street_textbox.Text;
-                        card.House = Convert.ToInt32(House_textbox.Text);
-                        card.Housing = Housing.Text;
-                        card.Flat = Convert.ToInt32(Flat_textbox.Text);
-                        card.Image = PathImage;
-                        db.MedCards.AddRange(new List<MedCard> {card});
-                        db.SaveChanges();
-                        MaterialMessageBox.Show("Сохранение/Изменение прошло успешна", "Уведомление");
+                            db.MedCards.Find(thisUser.Id).City = City_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Street = Street_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).House = Convert.ToInt32(House_textbox.Text);
+                            db.MedCards.Find(thisUser.Id).Housing = Housing.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Flat = Convert.ToInt32(Flat_textbox.Text);
+                            db.MedCards.Find(thisUser.Id).Image = PathImage;
+                            AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
+                            db.SaveChanges();
+                            MaterialMessageBox.Show("Сохранение/Изменение прошло успешна", "Уведомление");
+                        }
                     }
                     else
                     {
-                        db.MedCards.Find(thisUser.Id).Name = Name_textbox.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).Surname = Surname_textbox.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).Patronymic = Patronymic_textbox.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).Gender = Gender.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
-                                System.Globalization.CultureInfo.InvariantCulture);
-                        db.MedCards.Find(thisUser.Id).City = City_textbox.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).Street = Street_textbox.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).House = Convert.ToInt32(House_textbox.Text);
-                        db.MedCards.Find(thisUser.Id).Housing = Housing.Text.Trim();
-                        db.MedCards.Find(thisUser.Id).Flat = Convert.ToInt32(Flat_textbox.Text);                        
-                        db.MedCards.Find(thisUser.Id).Image = PathImage;
-                        AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
-                        db.SaveChanges();
-                        MaterialMessageBox.Show("Сохранение/Изменение прошло успешна", "Уведомление");
-                    }                   
+                        Bday_textbox.Text = "";
+                    }
+                    
                 }
             }
             catch (Exception ex) {}           
         }
+
+        //Добавить фото
+        private void AddPhotoButton_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                OpenFileDialog openFileDialog = new OpenFileDialog();
+                openFileDialog.Filter = "Фотографии|*.jpg;*.png;*.jpeg;";
+                if (openFileDialog.ShowDialog() == true)
+                {
+                    AdMainImage.Source = new BitmapImage(new Uri(openFileDialog.FileName, UriKind.Absolute)); //отображение
+                    PathImage = openFileDialog.FileName;
+                    Border.BorderThickness = new Thickness(0);
+                }
+            }
+            catch (Exception ex) { }
+        }
+        #endregion
     }
 }

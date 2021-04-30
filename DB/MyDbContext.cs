@@ -19,7 +19,8 @@ namespace CourseProjectWPF.DB
 
         //public DbSet<Group> Groups { get; set; }
         //public DbSet<Song> Songs { get; set; }
-
+        public DbSet<Doctor> Doctors { get; set; }
+        public DbSet<Schedule> Schedules { get; set; }
         public DbSet<User> Users { get; set; }
         public DbSet<MedCard> MedCards { get; set; }
         public DbSet<Recording> Recordings { get; set; }

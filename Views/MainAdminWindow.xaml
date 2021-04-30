@@ -43,7 +43,7 @@
         <!--<TextBlock Grid.Row="1" Grid.Column="1">Address:</TextBlock>-->
 
         <TextBox Text="{Binding CardID}" Grid.Row="1" Grid.Column="0" Name="textboxNumberCard" Margin="5 0" MaxLength="12" 
-				   materialDesign:HintAssist.Hint="ID" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
+				   materialDesign:HintAssist.Hint="Id" Style="{StaticResource MaterialDesignFloatingHintTextBox}"
                  PreviewTextInput="onlyDig" PreviewKeyDown="textbox_restrictSpace"></TextBox>
         <TextBox Text="{Binding Surname}" Grid.Row="1" Grid.Column="1" Name="textboxLastName" Margin="5 0" 
 				 Grid.ColumnSpan="3" MaxLength="24" materialDesign:HintAssist.Hint="Фамилия" PreviewTextInput="onlyLetters"

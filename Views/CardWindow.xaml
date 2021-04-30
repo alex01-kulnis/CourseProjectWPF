@@ -102,7 +102,7 @@
                 </StackPanel>
             </StackPanel>
 
-            <StackPanel Margin="73 0 0 0" Orientation="Vertical" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
+            <StackPanel Margin="74 0 0 0" Orientation="Vertical" Height="300" VerticalAlignment="Top" HorizontalAlignment="Left">
                 <Label Background="White" Foreground="Gray"  FontSize="20" Width="180" Height="40" VerticalAlignment="Top"
                        HorizontalAlignment="Left" Content="Фото пациента : " />
                 <StackPanel Orientation="Horizontal">

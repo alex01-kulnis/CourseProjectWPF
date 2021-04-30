@@ -64,7 +64,8 @@ namespace CourseProjectWPF.Views
                         {
                             user = new User();
                             user.FirstName = Name_textbox.Text.Trim();
-                            user.Surname = Surname_textbox.Text.Trim();                            
+                            user.Surname = Surname_textbox.Text.Trim();
+                            //user.BDay = Bday_textbox.Text.Trim();
                             user.BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
                                 System.Globalization.CultureInfo.InvariantCulture);
                             user.Gender = Gender.Text.Trim();

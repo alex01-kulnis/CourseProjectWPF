@@ -141,11 +141,9 @@ namespace CourseProjectWPF.ViewModels
                     {
                         user = new User();
                         user.FirstName = FirstName;
-                        user.Surname = Surname;
-                        
+                        user.Surname = Surname;                       
                         user.BDay = BDay;
-                        //user.BDay = DateTime.ParseExact(str, "dd.MM.yyyy",
-                        //    System.Globalization.CultureInfo.InvariantCulture);
+                           
                         user.Gender = Gender;
                         user.Login = Login;
                         user.Password = Password;

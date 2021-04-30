@@ -22,7 +22,7 @@ namespace CourseProjectWPF.Models
         public string Housing { get; set; }
         public int Flat { get; set; }
         public string Image { get; set; }
-
+ 
         public virtual User User { get; set; }
     }
 }

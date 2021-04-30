@@ -24,6 +24,18 @@
                 <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"/>
             </DoubleAnimationUsingKeyFrames>
         </Storyboard>
+        <Storyboard x:Key="ButtonsOpen">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.45" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
+        <Storyboard x:Key="ButtonsClose">
+            <DoubleAnimationUsingKeyFrames Storyboard.TargetProperty="(FrameworkElement.Width)" Storyboard.TargetName="GridMenu">
+                <EasingDoubleKeyFrame KeyTime="0" Value="60"/>
+                <EasingDoubleKeyFrame KeyTime="0:0:0.0" Value="60"/>
+            </DoubleAnimationUsingKeyFrames>
+        </Storyboard>
     </Window.Resources>
 
     <Window.Triggers>
@@ -32,6 +44,18 @@
         </EventTrigger>
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="ButtonCloseMenu">
             <BeginStoryboard Storyboard="{StaticResource MenuClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="HomeButton">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="HomeButton">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsOpen}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="RecordingBttn">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="RecordingBttn">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsOpen}"/>
         </EventTrigger>
     </Window.Triggers>
     <Grid>
@@ -65,10 +89,10 @@
                             <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Личная карта</TextBlock>
                         </StackPanel>
                     </Button>
-                    <Button Height="60" x:Name="CreateAdButton" Background="{x:Null}" BorderBrush="{x:Null}" 
-                            HorizontalAlignment="Left" ToolTip="Запись">
+                    <Button Height="60" x:Name="RecordingBttn" Background="{x:Null}" BorderBrush="{x:Null}" 
+                            HorizontalAlignment="Left" ToolTip="Запись" Click="RecordingButton">
                         <StackPanel Orientation="Horizontal">
-                            <materialDesign:PackIcon Kind="Encryption" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
+                            <materialDesign:PackIcon Kind="Calendar" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
                             <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Запись</TextBlock>
                         </StackPanel>
                     </Button>
@@ -85,7 +109,7 @@
             <materialDesign:MaterialDateDisplay   IsEnabled="True" Margin="8" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
         </Grid>
         <Grid Background="White" x:Name="GridMain" Margin="60,60,0,0">
-            
+            <Image Source="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\Hospital.jpg" Margin="45,70,99,76" Grid.RowSpan="2"></Image>
         </Grid>
     </Grid>
 </Window>
