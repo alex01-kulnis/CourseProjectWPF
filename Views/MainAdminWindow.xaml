@@ -87,8 +87,8 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <Button Grid.Row="5" Grid.Column="0" Name="buttonOpen" Margin="5,10" 
-				ToolTip="Open patient card" Style="{StaticResource MaterialDesignRaisedAccentButton}" Height="Auto">Open Card</Button>
+        <Button Grid.Row="5" Grid.Column="0" Name="OpenVisitUser" Margin="5,10" Background="#FF33C2F7" Content="{materialDesign:PackIcon Kind=CalendarAdd,Size=28}"
+				ToolTip="Посещения пациента" Style="{StaticResource MaterialDesignRaisedAccentButton}" Height="Auto" Click="ConfirmVisited_Click"></Button>
         <Button Grid.Row="5" Grid.Column="1" Name="buttonEdit" Margin="5,10"  ToolTip="Изменить данные пациента" Height="Auto"
                 Background="#FF33C2F7" TextElement.FontSize="18" Content="{materialDesign:PackIcon Kind=Edit,Size=28}" Click="buttonEdit_Click"></Button>
         <Button Grid.Row="5" Grid.Column="2" Name="buttonRemove" Margin="5,10"  Content="{materialDesign:PackIcon Size=28, Kind=Delete}" Height="Auto"

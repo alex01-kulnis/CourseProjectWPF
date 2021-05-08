@@ -70,7 +70,7 @@ namespace CourseProjectWPF.Views
         void buttonsEditRemoveStateChange()
         {
             // to make buttons enabled only when patient was chosen
-            buttonEdit.IsEnabled = buttonRemove.IsEnabled = buttonOpen.IsEnabled = (datagridPatiens.SelectedItems.Count > 0);
+            OpenVisitUser.IsEnabled = buttonEdit.IsEnabled = buttonRemove.IsEnabled =  (datagridPatiens.SelectedItems.Count > 0);
         }
                        
 
@@ -154,21 +154,27 @@ namespace CourseProjectWPF.Views
 
         private void buttonAdd_Click(object sender, RoutedEventArgs e)
         {
-            // open add patient window
-            AdminAddClient addEditWindow = new AdminAddClient();
-            addEditWindow.Title = "Add patient";
-
-            // update data grid if patient was added 
-            if (addEditWindow.ShowDialog() == true)
+            try
             {
-                fillDataFromDBtoDatagrid();
-                // focus on the added patient 
-                datagridPatiens.SelectedIndex = datagridPatiens.Items.Count - 1;
-                // scroll patient list to the added patient
-                //datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
-                // popup notification
-                //showNotification("The patient was added");
+                // open add patient window
+                AdminAddClient addEditWindow = new AdminAddClient();
+                addEditWindow.Title = "Add patient";
+
+                // update data grid if patient was added 
+                if (addEditWindow.ShowDialog() == true)
+                {
+                    fillDataFromDBtoDatagrid();
+                    // focus on the added patient 
+                    datagridPatiens.SelectedIndex = datagridPatiens.Items.Count - 1;
+                    // scroll patient list to the added patient
+                    //datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                    // popup notification
+                    //showNotification("The patient was added");
+                }
             }
+            catch (Exception)
+            {
+            }                    
         }
 
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
@@ -222,28 +228,65 @@ namespace CourseProjectWPF.Views
         // edit patient button click
         private void buttonEdit_Click(object sender, RoutedEventArgs e)
         {
-            // check patient was chosen in list
-            if (datagridPatiens.SelectedItems.Count <= 0)
-                return;
-
-            // open add patient window with filled fields
-            AdminChangeClient addEditWindow = new AdminChangeClient(datagridPatiens.SelectedItem as User);
-            addEditWindow.Title = "Edit patient";
-            
-            // update data grid if patient was changed 
-            if (addEditWindow.ShowDialog() == true)
+            try
             {
-                // save position to restore
-                int selectedIndex = datagridPatiens.SelectedIndex;
+                // check patient was chosen in list
+                if (datagridPatiens.SelectedItems.Count <= 0)
+                    return;
 
-                fillDataFromDBtoDatagrid();
-                // focus on the changed patient from saved position
-                datagridPatiens.SelectedIndex = selectedIndex;
-                // scroll patient list to the changed patient
-                datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
-                // popup notification                
+                // open add patient window with filled fields
+                AdminChangeClient addEditWindow = new AdminChangeClient(datagridPatiens.SelectedItem as User);
+                addEditWindow.Title = "Edit patient";
+
+                // update data grid if patient was changed 
+                if (addEditWindow.ShowDialog() == true)
+                {
+                    // save position to restore
+                    int selectedIndex = datagridPatiens.SelectedIndex;
+
+                    fillDataFromDBtoDatagrid();
+                    // focus on the changed patient from saved position
+                    datagridPatiens.SelectedIndex = selectedIndex;
+                    // scroll patient list to the changed patient
+                    datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                    // popup notification                
+                }
+            }
+            catch (Exception)
+            {
+            }          
+        }
+
+        private void ConfirmVisited_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                // check patient was chosen in list
+                if (datagridPatiens.SelectedItems.Count <= 0)
+                    return;
+
+                // open add patient window with filled fields
+                ConfirmUsersVisiting addEditWindow = new ConfirmUsersVisiting(datagridPatiens.SelectedItem as User);
+                addEditWindow.Title = "Graphics";
+
+                // update data grid if patient was changed 
+                if (addEditWindow.ShowDialog() == true)
+                {
+                    // save position to restore
+                    int selectedIndex = datagridPatiens.SelectedIndex;
+
+                    fillDataFromDBtoDatagrid();
+                    // focus on the changed patient from saved position
+                    datagridPatiens.SelectedIndex = selectedIndex;
+                    // scroll patient list to the changed patient
+                    datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                    // popup notification                
+                }
+            }
+            catch (Exception)
+            {
             }
         }
-        #endregion
+        #endregion        
     }
 }

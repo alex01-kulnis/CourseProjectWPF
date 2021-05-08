@@ -18,25 +18,16 @@
             </StackPanel>
 
             <StackPanel Margin="75 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Label FontSize="20" Content="Выберите дату :"  Foreground="Gray"/>
-                <DatePicker DisplayDateStart="1900/01/01" DisplayDateEnd="2004/12/31" BorderThickness="0,0,0,1" BorderBrush="Black"   
-                   materialDesign:HintAssist.Hint="21.02.1983" x:Name="DataVisiting"
-                    SelectedDateFormat="Short" Width="300" Height="40" FontSize="20" Margin="10 0 0 0"/>
+                <Label FontSize="20" Content="Выберите дату:"  Foreground="Gray"/>
+                <DatePicker  BorderThickness="0,0,0,1" BorderBrush="Black"   SelectedDate="{Binding AvailableFrom, Mode=TwoWay}"
+                    DisplayDate="{Binding DateTime.Now}" materialDesign:HintAssist.Hint="XX.XX.XXXX" x:Name="DataVisiting" Width="300" Height="40"                  
+                    SelectedDateFormat="Short"  FontSize="20" Margin="10 0 0 0"/>
             </StackPanel>
 
             <StackPanel Margin="75 0 0 15" Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <Label FontSize="20" Width="210" Height="40" Content="Выберите терапевта :" Background="White" Foreground="Gray" ></Label>
+                <Label FontSize="20" Width="210" Height="40" Content="Выберите терапевта:" Background="White" Foreground="Gray" ></Label>
                 <ComboBox Name="DoctorFIO" BorderThickness="1" BorderBrush="Black"  Width="250" Height="40" Background="White" 
-                     FontSize="20" Margin="10,10,20,10">
-                    <ComboBoxItem  IsSelected="True">
-                        Иванова В.А.
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Кирякова Л.А.
-                    </ComboBoxItem>
-                    <ComboBoxItem>
-                        Малышева В.Т.
-                    </ComboBoxItem>
+                     FontSize="20" Margin="15,10,20,10" >
                 </ComboBox>
             </StackPanel>
 
@@ -47,55 +38,48 @@
                    Style="{StaticResource MaterialDesignBody2TextBlock}" TextDecorations="Underline"
                    TextAlignment="Center" Margin="15 10 0 0"></TextBlock>
                 </StackPanel>
-                
             </StackPanel>
 
             <StackPanel Margin="0 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" >
                 <Label FontSize="24" Content="Ваши активные талоны"  Foreground="Red"/>
             </StackPanel>
 
-            <!--<StackPanel Margin="75 0 0 15" Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Left">
-                <StackPanel Orientation="Horizontal" Margin = "0 10 80 10">
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="08:00 - 08:12" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="08:12 - 08:24" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="08:24 - 08:36" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="08:36 - 08:48" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="08:48 - 09:00" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="09:00 - 09:12" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="09:12 - 09:24" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="09:24 - 09:36" Background="White" Foreground="Black"/>
-                    </StackPanel>
-                    
-                    <StackPanel  Margin = "0 5 15 0">
-                        <Button FontSize="10" Width="100" Height="30" Content="09:36 - 09:48" Background="White" Foreground="Black"/>
-                    </StackPanel>
+            <StackPanel HorizontalAlignment="Center">
+                <DataGrid Grid.Row="4" Grid.ColumnSpan="4" Name="datagridPatiens" SelectionUnit="FullRow" SelectionChanged="datagridPatiens_SelectionChanged"
+				  SelectionMode="Single" ItemsSource="{Binding info}" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="200" Width="1150"
+                  IsReadOnly="True" >
+                    <DataGrid.Resources>
+                        <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
+                            <Setter Property="Background" Value="#FF33C2F7" />
+                            <Setter Property="Foreground" Value="Black" />
+                        </Style>
+                    </DataGrid.Resources>
+                    <DataGrid.CellStyle>
+                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                            <Setter Property="BorderThickness" Value="0"/>
+                            <Style.Triggers>
+                                <Trigger Property="IsSelected" Value="True">
+                                    <Setter Property="Background" Value="Gray"/>
+                                    <!--<Setter Property="Foreground" Value="Black"/>-->
+                                </Trigger>
+                            </Style.Triggers>
+                        </Style>
+                        
+                    </DataGrid.CellStyle>
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Foreground="Black" Width="0.6*" Header="ФИО" Binding="{Binding FIO}"></DataGridTextColumn>
+                        <DataGridTextColumn Foreground="Black" Header="Доктор"  Binding="{Binding Doctor}"/>
+                        <DataGridTextColumn Foreground="Black" Header="Кабинет"  Binding="{Binding Cabinet}"/>
+                        <DataGridTextColumn Foreground="Black" Width="0.8*" Header="День визита"  Binding="{Binding VisitDay, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Foreground="Black" Width="0.6*" Header="Время визита"  Binding="{Binding VisitTime}"/>
+                    </DataGrid.Columns>
+                </DataGrid>
+            </StackPanel>
 
-                </StackPanel>
-                
-            </StackPanel>-->
+            <StackPanel HorizontalAlignment="Right"  Orientation="Horizontal"  VerticalAlignment="Top">
+                <Button x:Name="buttonEdit" Content="Отменить билет"  HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0 25 50 0"  Foreground="Black" ToolTip="Заполните"
+                  Click="buttonEdit_Click" Width="240" Height="45" FontSize="20" Background="#FF33C2F7" BorderBrush="#5AA9B0"/>
+            </StackPanel>
 
         </StackPanel>
     </Grid>

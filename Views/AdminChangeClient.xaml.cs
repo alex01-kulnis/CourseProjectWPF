@@ -140,6 +140,7 @@ namespace CourseProjectWPF.Views
             }
         }
 
+        #region Validation
         private void onlyLetters(object sender, TextCompositionEventArgs e)
         {
             Regex regex = new Regex("^[a-zA-Zа-яА-Я]{1,}$");
@@ -176,9 +177,9 @@ namespace CourseProjectWPF.Views
         }
 
         private void Bday_textbox_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
-        {            
+        {
             if (String.IsNullOrEmpty(Bday_textbox.Text))
-                edit.IsEnabled = false;            
+                edit.IsEnabled = false;
             else if (!String.IsNullOrEmpty(Name_textbox.Text) &&
                 !String.IsNullOrEmpty(Surname_textbox.Text) &&
                 !String.IsNullOrEmpty(Bday_textbox.Text) &&
@@ -203,12 +204,12 @@ namespace CourseProjectWPF.Views
 
         private void password_box_PasswordChanged(object sender, RoutedEventArgs e)
         {
-            
-            if(i >= 1)
+
+            if (i >= 1)
             {
                 PasswrodChange = true;
             }
-                
+
             if (password_box.Password.Length < 8)
                 edit.IsEnabled = false;
             else if (!String.IsNullOrEmpty(Name_textbox.Text) &&
@@ -220,7 +221,8 @@ namespace CourseProjectWPF.Views
             {
                 edit.IsEnabled = true;
                 i++;
-            }                
-        }        
+            }
+        }
+        #endregion
     }
 }

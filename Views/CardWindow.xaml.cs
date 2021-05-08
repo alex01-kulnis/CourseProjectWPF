@@ -68,7 +68,6 @@ namespace CourseProjectWPF.Views
             catch (Exception) { }
         }
         
-        
 
         #region Validation
         //spaces
@@ -259,8 +258,7 @@ namespace CourseProjectWPF.Views
         #endregion
         #endregion
 
-        #region Buttons
-        
+        #region Buttons        
         //Сохранение
         private void Save_Click(object sender, RoutedEventArgs e)
         {
@@ -270,9 +268,8 @@ namespace CourseProjectWPF.Views
                 {
                     User thisUser = db.Users.Find(App.CurrentUser.Id);
                     MedCard test = db.MedCards.FirstOrDefault(p => p.ID == thisUser.Id);
-
-                    DateTime a = DateTime.Now;                                       
-                    if (Bday_textbox.SelectedDate < a)
+                                                           
+                    if (Bday_textbox.SelectedDate < DateTime.Now)
                     {
                         if (test == null)
                         {

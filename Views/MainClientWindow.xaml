@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"
-        Title="Пользователь" MinHeight="720" Height="720" MinWidth="1280" Width="1280" ResizeMode="CanMinimize"
+        Title="MedicalApp" MinHeight="720" Height="720" MinWidth="1280" Width="1280" ResizeMode="CanMinimize"
         Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico" >
 
     <Window.Resources>
@@ -57,6 +57,12 @@
         <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="RecordingBttn">
             <BeginStoryboard Storyboard="{StaticResource ButtonsOpen}"/>
         </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="HistoryBttn">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsClose}"/>
+        </EventTrigger>
+        <EventTrigger RoutedEvent="ButtonBase.Click" SourceName="HistoryBttn">
+            <BeginStoryboard Storyboard="{StaticResource ButtonsOpen}"/>
+        </EventTrigger>
     </Window.Triggers>
     <Grid>
         <Grid Height="55" VerticalAlignment="Top" Background="#FF33C2F7">
@@ -94,6 +100,13 @@
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="Calendar" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
                             <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Запись</TextBlock>
+                        </StackPanel>
+                    </Button>
+                    <Button Height="60" x:Name="HistoryBttn" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left"
+                            ToolTip="Сменить аккаунт" Click="HistoryButton">
+                        <StackPanel Orientation="Horizontal">
+                            <materialDesign:PackIcon Kind="History" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
+                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Сменить аккаунт</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Height="60" x:Name="Exit" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left"

@@ -9,7 +9,7 @@ namespace CourseProjectWPF.Models
 {
     public class Schedule
     {
-        [ForeignKey("Doctor")]
+    //    [ForeignKey("Doctor")]
         public int Id { get; set; }
         public string Monday { get; set; }
         public string Tuesday { get; set; }
@@ -18,7 +18,7 @@ namespace CourseProjectWPF.Models
         public string Friday { get; set; }
 
 
-        public virtual Doctor Doctor { get; set; }
+        //public virtual Doctor Doctor { get; set; }
         //public virtual MedCard MedCard { get; set; }
         //public virtual List<Recording> Recordings { get; set; }
     }

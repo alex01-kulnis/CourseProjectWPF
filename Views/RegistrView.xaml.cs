@@ -49,7 +49,7 @@ namespace CourseProjectWPF.Views
                 {
                     string str = Bday_textbox.ToString();
                     int a = Convert.ToInt32(str = str.Substring(6, 4));
-                    if (a < 2006 && a >= 1900)
+                    if (a < DateTime.Now.Year-13  && a >= 1900)
                     {
                         SqlParameter param = new SqlParameter("@Login", login_textbox.Text);
                         var users = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Login LIKE @Login", param);
@@ -74,7 +74,8 @@ namespace CourseProjectWPF.Views
                             user.Password = Pass;
                             db.Users.Add(user);
                             db.SaveChanges();                            
-                            MaterialMessageBox.Show("Регистрация прошла успешна","Уведомление");                            
+                            MaterialMessageBox.Show("Регистрация прошла успешна","Уведомление");       
+                            
                             AuthView t = new AuthView();
                             Close();
                             Thread myThread = new Thread(new ThreadStart(DB.DB.ShowLoader));

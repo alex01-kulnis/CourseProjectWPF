@@ -88,6 +88,35 @@ namespace CourseProjectWPF.Views
                     MaterialMessageBox.Show("Заполните личную карточку, чтобы записаться к врачу", "Уведомление");
             }                                                  
         }
-        #endregion
+
+        private void HistoryButton(object sender, RoutedEventArgs e)
+        {
+            using (MyDbContext db = new MyDbContext())
+            {
+                User thisUser = db.Users.Find(App.CurrentUser.Id);
+                MedCard a = new MedCard();
+                a = db.MedCards.Where(b => b.BDay != null && b.ID == thisUser.Id).FirstOrDefault();
+                if (a != null)
+                {
+                    if (ButtonCloseMenu.Visibility == Visibility.Visible)
+                    {
+                        ButtonOpenMenu.Visibility = Visibility.Visible;
+                        ButtonCloseMenu.Visibility = Visibility.Collapsed;
+
+                        //GridMain.Children.Clear();
+                        GridMain.Children.Add(new HistotyVisitingWindow(this));
+                    }
+                    else
+                    {
+                        //GridMain.Children.Clear();
+                        GridMain.Children.Add(new HistotyVisitingWindow(this));
+                    }
+                }
+                else
+                    MaterialMessageBox.Show("У вас не может быть истории посещений, т.к. вы не заполнили личную карточку ", "Уведомление");
+            }
+        }
+
+        #endregion        
     }
 }

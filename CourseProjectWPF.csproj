@@ -117,6 +117,7 @@
     <Compile Include="DB\DB.cs" />
     <Compile Include="DB\MyDbContext.cs" />
     <Compile Include="Models\Doctor.cs" />
+    <Compile Include="Models\HistotyVisiting.cs" />
     <Compile Include="Models\MedCard.cs" />
     <Compile Include="Models\Recording.cs" />
     <Compile Include="Models\Schedule.cs" />
@@ -124,6 +125,7 @@
     <Compile Include="ViewModels\AdminAddClientModel.cs" />
     <Compile Include="ViewModels\AdminChangeClientModel.cs" />
     <Compile Include="ViewModels\AuthViewModel.cs" />
+    <Compile Include="ViewModels\ChooseTimeAndConfirmModel.cs" />
     <Compile Include="ViewModels\MainAdminWindowModel.cs" />
     <Compile Include="ViewModels\MainClientWindowModel.cs" />
     <Compile Include="ViewModels\RegistrViewModel.cs" />
@@ -135,6 +137,15 @@
     </Compile>
     <Compile Include="Views\CardWindow.xaml.cs">
       <DependentUpon>CardWindow.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ChooseTimeAndConfirm.xaml.cs">
+      <DependentUpon>ChooseTimeAndConfirm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\ConfirmUsersVisiting.xaml.cs">
+      <DependentUpon>ConfirmUsersVisiting.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\HistotyVisitingWindow.xaml.cs">
+      <DependentUpon>HistotyVisitingWindow.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\Loader.xaml.cs">
       <DependentUpon>Loader.xaml</DependentUpon>
@@ -172,6 +183,18 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="Views\CardWindow.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ChooseTimeAndConfirm.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\ConfirmUsersVisiting.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\HistotyVisitingWindow.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -214,6 +237,7 @@
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
+    <None Include=".editorconfig" />
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
@@ -228,6 +252,9 @@
   </ItemGroup>
   <ItemGroup>
     <Resource Include="Resourses\doctor.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="Resourses\back.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

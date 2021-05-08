@@ -14,7 +14,7 @@ namespace CourseProjectWPF.Models
     {
         public User()
         {
-
+            Doctors = new List<Doctor>();
         }
 
         public int Id { get; set; }
@@ -28,8 +28,10 @@ namespace CourseProjectWPF.Models
         public string Login { get; set; }
         public string Password { get; set; }
         public bool IsAdmin { get; set; }
-
+                                            
         public virtual MedCard MedCard { get; set; }
         public virtual List<Recording> Recordings { get; set; }
+        public virtual List<HistotyVisiting> HistotyVisitings { get; set; }
+        public virtual List<Doctor> Doctors { get; set; }
     }
 }
