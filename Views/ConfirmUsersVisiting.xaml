@@ -10,7 +10,7 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"        
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="ConfirmUsersVisiting"  Height="580" Width="780" WindowStyle="None">
+        Title="ConfirmUsersVisiting"  Height="580" Width="780" WindowStyle="None" Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
     <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="535*"/>
@@ -57,7 +57,7 @@
 
         <Button x:Name="buttonConfirmVisiting" Content="Подтвердить" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="73,511,0,22" Foreground="Black" ToolTip="Подтвердить посещение пациента" Width="137" Height="39" FontSize="16"
                     Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="ConfirmVisiting_Click" Grid.Column="1"/>
-        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="30,496,0,37" Foreground="Black" ToolTip="Удалить запись" Width="137" Height="39"
+        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="28,511,0,22" Foreground="Black" ToolTip="Удалить запись" Width="137" Height="39"
                     Background="red" BorderBrush="#5AA9B0" FontSize="16" Click="DelRecording_Click"/>
     </Grid>
 </Window>

@@ -56,7 +56,7 @@ namespace CourseProjectWPF.Views
         void buttonsEditRemoveStateChange()
         {
             // to make buttons enabled only when patient was chosen
-            buttonConfirmVisiting.IsEnabled = buttonDelRecording.IsEnabled = (datagridPatiens.SelectedItems.Count > 0);
+            buttonConfirmVisiting.IsEnabled = (datagridPatiens.SelectedItems.Count > 0);
         }
 
         #region All buttons
@@ -106,7 +106,28 @@ namespace CourseProjectWPF.Views
 
         private void DelRecording_Click(object sender, RoutedEventArgs e)
         {
+            try
+            {
+                using (MyDbContext db = new MyDbContext())
+                {
+                    DateTime a = DateTime.Now.Date;
+                    var all = db.Recordings.FirstOrDefault(p => p.VisitDay < a);
 
+                    if (all != null)
+                    {
+                        db.Recordings.Remove(all);
+                        // save
+                        db.SaveChanges();
+                        MaterialMessageBox.Show("Всё очищено", "Уведомление");
+                    }
+                    else                    
+                        MaterialMessageBox.Show("Такие даты отсуствуют", "Уведомление");
+                    
+                }
+            }
+            catch (Exception)
+            {
+            }
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)

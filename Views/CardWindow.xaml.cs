@@ -63,6 +63,10 @@ namespace CourseProjectWPF.Views
                     }
                     else
                         MaterialMessageBox.Show("Заполните личную карточку", "Уведомление");
+
+
+                    var users = (from user in db.Users                                 
+                                 select user).ToList();
                 }
             }
             catch (Exception) { }

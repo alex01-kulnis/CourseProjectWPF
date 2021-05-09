@@ -77,7 +77,7 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Right"  Orientation="Horizontal"  VerticalAlignment="Top">
-                <Button x:Name="buttonEdit" Content="Отменить билет"  HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0 25 50 0"  Foreground="Black" ToolTip="Заполните"
+                <Button x:Name="buttonEdit" Content="Отменить талон"  HorizontalAlignment="Left" VerticalAlignment="Center"  Margin="0 25 50 0"  Foreground="Black" ToolTip="Заполните"
                   Click="buttonEdit_Click" Width="240" Height="45" FontSize="20" Background="#FF33C2F7" BorderBrush="#5AA9B0"/>
             </StackPanel>
 
