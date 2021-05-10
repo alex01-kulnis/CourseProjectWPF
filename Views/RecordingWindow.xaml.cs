@@ -83,7 +83,7 @@ namespace CourseProjectWPF.Views
                         {
                             Error_Message.Text = "";
 
-                            this.Opacity = 0.5;
+                            this.Opacity = 4.9;
                             this.Effect = new BlurEffect();
                             ChooseTimeAndConfirm Window = new ChooseTimeAndConfirm(DataVisiting.SelectedDate, DoctorFIO.Text);
                             Window.ShowDialog();

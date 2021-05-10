@@ -31,7 +31,7 @@ namespace CourseProjectWPF.Models
                                             
         public virtual MedCard MedCard { get; set; }
         public virtual List<Recording> Recordings { get; set; }
-        public virtual List<HistotyVisiting> HistotyVisitings { get; set; }
+        public virtual List<HistoryVisiting> HistoryVisitings { get; set; }
         public virtual List<Doctor> Doctors { get; set; }
     }
 }

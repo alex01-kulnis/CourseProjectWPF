@@ -116,7 +116,6 @@ namespace CourseProjectWPF.Views
                     MaterialMessageBox.Show("У вас не может быть истории посещений, т.к. вы не заполнили личную карточку ", "Уведомление");
             }
         }
-
         #endregion        
     }
 }

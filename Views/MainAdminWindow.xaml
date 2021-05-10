@@ -10,7 +10,7 @@
         TextElement.FontSize="18"		
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
         Title="Админ" Height="580" Width="780" MinHeight="400" MinWidth="475"
-        Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico" >
+        Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="62"/>
@@ -98,9 +98,5 @@
                 HorizontalAlignment="Right" Height="Auto" Width="50" Click="buttonAdd_Click">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
         </Button>
-
-        <!--popup notification-->
-        <materialDesign:Snackbar Grid.Row="5" Grid.Column="2" Grid.ColumnSpan="2" 
-								 MessageQueue="{materialDesign:MessageQueue}" Name="SnackbarThree" Height="0" Margin="51,0" Width="288" />
     </Grid>
 </Window>

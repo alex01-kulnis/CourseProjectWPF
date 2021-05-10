@@ -80,21 +80,23 @@ namespace CourseProjectWPF.Views
                         int selectedIndex = datagridPatiens.SelectedIndex;
                         recording = db.Recordings.FirstOrDefault(p => p.Id == recording.Id);
 
-                        HistotyVisiting histoty = new HistotyVisiting();
+                        HistoryVisiting histoty = new HistoryVisiting();
                         histoty.Id = recording.Id;
-                        histoty.UserId = userr.Id;
+                        histoty.UserId = recording.UserId;
                         histoty.FIO = recording.FIO;
                         histoty.Doctor = recording.Doctor;
                         histoty.Cabinet = recording.FIO;
                         histoty.VisitDay = recording.VisitDay;
                         histoty.VisitTime = recording.VisitTime;
+                        histoty.Info = InfoForCard.Text;
 
-                        db.HistotyVisitings.Add(histoty);
+                        db.HistoryVisitings.Add(histoty);
                         db.Recordings.Remove(recording);
                         // save
                         db.SaveChanges();
                         
                         MaterialMessageBox.Show("Талон подтверждён", "Уведомление");
+                        InfoForCard.Text = "";
                         showInfo();
                     }
                 }
@@ -129,7 +131,7 @@ namespace CourseProjectWPF.Views
             {
             }
         }
-
+        
         private void Back_Click(object sender, RoutedEventArgs e)
         {
             this.Close();

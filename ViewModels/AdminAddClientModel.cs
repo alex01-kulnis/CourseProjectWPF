@@ -11,7 +11,6 @@ namespace CourseProjectWPF.ViewModels
 {
     class AdminAddClientModel
     {
-
         public void Close()
         {
             foreach (System.Windows.Window window in System.Windows.Application.Current.Windows)

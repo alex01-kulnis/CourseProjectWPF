@@ -21,7 +21,6 @@ namespace CourseProjectWPF.ViewModels
                     window.Close();
                 }
             }
-        }
-        
+        }        
     }
 }

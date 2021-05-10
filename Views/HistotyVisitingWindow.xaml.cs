@@ -22,6 +22,7 @@ namespace CourseProjectWPF.Views
     /// </summary>
     public partial class HistotyVisitingWindow : UserControl
     {
+        HistoryVisiting a = new HistoryVisiting();
         public HistotyVisitingWindow(MainClientWindow mainClientWindow)
         {
             InitializeComponent();
@@ -33,9 +34,22 @@ namespace CourseProjectWPF.Views
             using (MyDbContext db = new MyDbContext())
             {
                 User thisUser = db.Users.Find(App.CurrentUser.Id);
-                //select only patient
-                datagridPatiens.ItemsSource = db.HistotyVisitings.Where(p => p.UserId == thisUser.Id).ToList();
+                //select only patient                
+                datagridPatiens.ItemsSource = db.HistoryVisitings.Where(p => p.UserId == thisUser.Id).ToList();
+
+                a = db.HistoryVisitings.Where(p => p.UserId == thisUser.Id).FirstOrDefault();
             }           
+        }
+
+        private void datagridPatiens_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+            // check patient was chosen in list
+            if (datagridPatiens.SelectedItems.Count <= 0)
+                return;
+
+            // open add patient window with filled fields
+            var recording = datagridPatiens.SelectedItem as HistoryVisiting;
+            InfoForCard.Text = recording.Info;
         }
     }
 }

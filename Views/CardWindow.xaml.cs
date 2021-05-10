@@ -119,7 +119,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -136,7 +135,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -153,7 +151,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -170,7 +167,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -187,7 +183,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -204,7 +199,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -221,27 +215,10 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
-
-        private void Flat_textbox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            if (String.IsNullOrEmpty(Flat_textbox.Text))
-                SaveButton.IsEnabled = false;
-            else if (!String.IsNullOrEmpty(Name_textbox.Text) &&
-                !String.IsNullOrEmpty(Surname_textbox.Text) &&
-                !String.IsNullOrEmpty(Patronymic_textbox.Text) &&
-                !String.IsNullOrEmpty(Gender.Text) &&
-                !String.IsNullOrEmpty(Bday_textbox.Text) &&
-                !String.IsNullOrEmpty(City_textbox.Text) &&
-                !String.IsNullOrEmpty(Street_textbox.Text) &&
-                !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
-                    AdMainImage.Source != null)
-                SaveButton.IsEnabled = true;
-        }
+       
 
         private void AdMainImage_Changed(object sender, SizeChangedEventArgs e)
         {
@@ -255,7 +232,6 @@ namespace CourseProjectWPF.Views
                 !String.IsNullOrEmpty(City_textbox.Text) &&
                 !String.IsNullOrEmpty(Street_textbox.Text) &&
                 !String.IsNullOrEmpty(House_textbox.Text) &&
-                !String.IsNullOrEmpty(Flat_textbox.Text) &&
                     AdMainImage.Source != null)
                 SaveButton.IsEnabled = true;
         }
@@ -289,7 +265,10 @@ namespace CourseProjectWPF.Views
                             card.Street = Street_textbox.Text;
                             card.House = Convert.ToInt32(House_textbox.Text);
                             card.Housing = Housing.Text;
-                            card.Flat = Convert.ToInt32(Flat_textbox.Text);
+                            if (Flat_textbox.Text != "")
+                            {
+                                card.Flat = Convert.ToInt32(Flat_textbox.Text);
+                            }                           
                             card.Image = PathImage;
                             db.MedCards.AddRange(new List<MedCard> { card });
                             db.SaveChanges();
@@ -304,10 +283,13 @@ namespace CourseProjectWPF.Views
                             db.MedCards.Find(thisUser.Id).BDay = DateTime.ParseExact(Bday_textbox.Text, "dd.MM.yyyy",
                                     System.Globalization.CultureInfo.InvariantCulture);
                             db.MedCards.Find(thisUser.Id).City = City_textbox.Text.Trim();
-                            db.MedCards.Find(thisUser.Id).Street = Street_textbox.Text.Trim();
+                            db.MedCards.Find(thisUser.Id).Street = Street_textbox.Text.Trim();                           
                             db.MedCards.Find(thisUser.Id).House = Convert.ToInt32(House_textbox.Text);
                             db.MedCards.Find(thisUser.Id).Housing = Housing.Text.Trim();
-                            db.MedCards.Find(thisUser.Id).Flat = Convert.ToInt32(Flat_textbox.Text);
+                            if (Flat_textbox.Text != "")
+                            {
+                                db.MedCards.Find(thisUser.Id).Flat = Convert.ToInt32(Flat_textbox.Text);
+                            }                                                       
                             db.MedCards.Find(thisUser.Id).Image = PathImage;
                             AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
                             db.SaveChanges();

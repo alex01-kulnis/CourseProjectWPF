@@ -117,10 +117,9 @@
     <Compile Include="DB\DB.cs" />
     <Compile Include="DB\MyDbContext.cs" />
     <Compile Include="Models\Doctor.cs" />
-    <Compile Include="Models\HistotyVisiting.cs" />
+    <Compile Include="Models\HistoryVisiting.cs" />
     <Compile Include="Models\MedCard.cs" />
     <Compile Include="Models\Recording.cs" />
-    <Compile Include="Models\Schedule.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="ViewModels\AdminAddClientModel.cs" />
     <Compile Include="ViewModels\AdminChangeClientModel.cs" />

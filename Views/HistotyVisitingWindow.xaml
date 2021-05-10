@@ -17,8 +17,8 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center">
-                <DataGrid Grid.Row="4" Grid.ColumnSpan="4" Name="datagridPatiens" SelectionUnit="FullRow" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="520" Width="1150"
-				  SelectionMode="Single" ItemsSource="{Binding info}" 
+                <DataGrid x:Name="datagridPatiens" SelectionUnit="FullRow" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="320" Width="1150"
+				  SelectionMode="Single" ItemsSource="{Binding info}" MouseDoubleClick="datagridPatiens_MouseDoubleClick" 
                   IsReadOnly="True" >
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
@@ -27,7 +27,7 @@
                         </Style>
                     </DataGrid.Resources>
                     <DataGrid.CellStyle>
-                        <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                        <Style TargetType="{x:Type DataGridCell}" BasedOn="{StaticResource {x:Type DataGridCell}}">
                             <Setter Property="BorderThickness" Value="0"/>
                             <Style.Triggers>
                                 <Trigger Property="IsSelected" Value="True">
@@ -39,15 +39,19 @@
 
                     </DataGrid.CellStyle>
                     <DataGrid.Columns>
-                        <DataGridTextColumn Foreground="Black" Width="0.6*" Header="ФИО" Binding="{Binding FIO}"></DataGridTextColumn>
+                        <DataGridTextColumn Foreground="Black" Width="0.6*" Header="ФИО" Binding="{Binding FIO}"/>
                         <DataGridTextColumn Foreground="Black" Header="Доктор"  Binding="{Binding Doctor}"/>
                         <DataGridTextColumn Foreground="Black" Header="Кабинет"  Binding="{Binding Cabinet}"/>
-                        <DataGridTextColumn Foreground="Black" Width="0.8*" Header="День визита"  Binding="{Binding VisitDay, StringFormat={}{0:dd.MM.yyyy}}"/>
+                        <DataGridTextColumn Foreground="Black" Width="0.8*" Header="День визита"  Binding="{Binding VisitDay, StringFormat=\{0:dd.MM.yyyy\}}"/>
                         <DataGridTextColumn Foreground="Black" Width="0.6*" Header="Время визита"  Binding="{Binding VisitTime}"/>
                     </DataGrid.Columns>
                 </DataGrid>
             </StackPanel>
 
+            <StackPanel HorizontalAlignment="Center">
+                <TextBox x:Name="InfoForCard" IsReadOnly="True" Width="1149" Height="200" BorderThickness="1 1 1 1" BorderBrush="Black" Margin="0 25 1 1"  ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
+            </StackPanel>
         </StackPanel>
     </Grid>
 </UserControl>

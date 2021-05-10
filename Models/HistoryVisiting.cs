@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace CourseProjectWPF.Models
 {
-    public class HistotyVisiting
+    public class HistoryVisiting
     {
         public int Id { get; set; }
         public string FIO { get; set; }
@@ -14,8 +14,8 @@ namespace CourseProjectWPF.Models
         public string Cabinet { get; set; }
         public DateTime VisitDay { get; set; }
         public string VisitTime { get; set; }
+        public string Info { get; set; }
         public int UserId { get; set; }
-
 
         public virtual User User { get; set; }
     }

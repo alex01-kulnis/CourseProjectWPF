@@ -23,10 +23,6 @@ namespace CourseProjectWPF.Models
         public DateTime Oddday_start { get; set; }
         public DateTime Oddday_end { get; set; }
 
-        //public virtual Schedule Schedule { get; set; }
-
-        //public virtual MedCard MedCard { get; set; }
-        //public virtual List<Recording> Recordings { get; set; }
         public virtual List<User> Users { get; set; }
     }
 }

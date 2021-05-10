@@ -188,9 +188,7 @@ namespace CourseProjectWPF.Views
                         recording.Cabinet = Cabinet_textbox.Text;
                         recording.VisitDay = DateTime.ParseExact(Visiting_textbox.Text, "dd.MM.yyyy",
                                         System.Globalization.CultureInfo.InvariantCulture);
-                        recording.VisitTime = TimeVisiting.Text.Trim();
-                        //DateTime.ParseExact(TimeVisiting.Text.Trim(), "HH:mm:ss",
-                        //                System.Globalization.CultureInfo.InvariantCulture);                    
+                        recording.VisitTime = TimeVisiting.Text.Trim();                  
                         db.Recordings.Add(recording);
                         db.SaveChanges();
                         MaterialMessageBox.Show("Запись прошло успешна", "Уведомление");                        
