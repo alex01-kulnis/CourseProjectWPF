@@ -103,10 +103,10 @@
                         </StackPanel>
                     </Button>
                     <Button Height="60" x:Name="HistoryBttn" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left"
-                            ToolTip="Сменить аккаунт" Click="HistoryButton">
+                            ToolTip="История посещения" Click="HistoryButton">
                         <StackPanel Orientation="Horizontal">
                             <materialDesign:PackIcon Kind="History" Width="30" Height="30" VerticalAlignment="Center" Margin="0 0 10 0"></materialDesign:PackIcon>
-                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">Сменить аккаунт</TextBlock>
+                            <TextBlock  VerticalAlignment="Center" Margin="20 10" FontSize="20">История</TextBlock>
                         </StackPanel>
                     </Button>
                     <Button Height="60" x:Name="Exit" Background="{x:Null}" BorderBrush="{x:Null}" HorizontalAlignment="Left"

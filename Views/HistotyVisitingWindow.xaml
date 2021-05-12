@@ -3,6 +3,7 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
              xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+              xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"   
              xmlns:local="clr-namespace:CourseProjectWPF.Views"
              mc:Ignorable="d" 
              TextElement.Foreground="Black"
@@ -12,14 +13,68 @@
              MinHeight="620" MinWidth="1220">
     <Grid Background="White">
         <StackPanel Orientation="Vertical">
-            <StackPanel Margin="0 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Center" >
-                <Label FontSize="24" Content="История посещений :"  Foreground="Red"/>
+            <StackPanel Orientation="Horizontal" Height="72" VerticalAlignment="Top" HorizontalAlignment="Center">
+                <StackPanel Orientation="Horizontal" Height="47">
+                    <Label FontSize="24" Content="История посещений :" Foreground="Red" Width="255" Margin="0 0 363 0"/>
+                    
+                    <Label Margin="104,10,0,0" Content="Номер месяца :" BorderThickness="1 1 1 1" Width="137" Foreground="Black"/>
+                    <ComboBox HorizontalContentAlignment="Center" Name="NumberOfMonth" BorderThickness="1" BorderBrush="Black"  Width="52" Height="35" Background="White" Margin="0 0 25 0" FontSize="20">
+                        <ComboBox.Style>
+                            <Style TargetType="ComboBox">
+                                <Setter Property="Background" Value="Black"/>
+                                <Setter Property="FontSize" Value="18"/>
+                            </Style>
+                        </ComboBox.Style>
+                        <ComboBoxItem  IsSelected="True">
+                            1
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            2
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            3
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            4
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            5
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            6
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            7
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            8
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            9
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            10
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            11
+                        </ComboBoxItem>
+                        <ComboBoxItem >
+                            12
+                        </ComboBoxItem>
+                    </ComboBox>
+                   
+                    <Button x:Name="buttonSearch" Margin="0,0,6,0" Background="#FF33C2F7" ToolTip="Поиск" Height="Auto" Content="{materialDesign:PackIcon Kind=Pageview, Size=20}" Width="53"
+                             Click="buttonSearch_Click" />
+
+                    <Button Name="buttonEraser" Margin="0,0,14,0" Content="{materialDesign:PackIcon Size=20,Kind=autorenew }" ToolTip="Очистить"  Background="#FF33C2F7" Width="53" Height="Auto" 
+                            Click="buttonEraser_Click"/>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center">
-                <DataGrid x:Name="datagridPatiens" SelectionUnit="FullRow" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="320" Width="1150"
-				  SelectionMode="Single" ItemsSource="{Binding info}" MouseDoubleClick="datagridPatiens_MouseDoubleClick" 
-                  IsReadOnly="True" >
+                <DataGrid x:Name="datagridPatiens" SelectionUnit="FullRow" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="310" Width="1150"
+				  SelectionMode="Single" ItemsSource="{Binding info}" MouseDoubleClick="datagridPatiens_MouseDoubleClick"
+                  IsReadOnly="True">
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">
                             <Setter Property="Background" Value="#FF33C2F7" />

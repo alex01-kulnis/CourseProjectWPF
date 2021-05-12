@@ -261,26 +261,40 @@ namespace CourseProjectWPF.Views
         {
             try
             {
-                // check patient was chosen in list
-                if (datagridPatiens.SelectedItems.Count <= 0)
-                    return;
-
-                // open add patient window with filled fields
-                ConfirmUsersVisiting addEditWindow = new ConfirmUsersVisiting(datagridPatiens.SelectedItem as User);
-                addEditWindow.Title = "Graphics";
-
-                // update data grid if patient was changed 
-                if (addEditWindow.ShowDialog() == true)
+                User pacient = datagridPatiens.SelectedItem as User;
+                using (MyDbContext db = new MyDbContext())
                 {
-                    // save position to restore
-                    int selectedIndex = datagridPatiens.SelectedIndex;
+                    // check patient was chosen in list
+                    if (datagridPatiens.SelectedItems.Count <= 0)
+                        return;
 
-                    fillDataFromDBtoDatagrid();
-                    // focus on the changed patient from saved position
-                    datagridPatiens.SelectedIndex = selectedIndex;
-                    // scroll patient list to the changed patient
-                    datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
-                    // popup notification                
+                    MedCard card = new MedCard();
+                    card = db.MedCards.Where(b => b.ID == pacient.Id).FirstOrDefault();
+                    if (card != null)
+                    {
+                        // open add patient window with filled fields
+                        ConfirmUsersVisiting addEditWindow = new ConfirmUsersVisiting(datagridPatiens.SelectedItem as User);
+                        addEditWindow.Title = "Graphics";
+
+                        // update data grid if patient was changed 
+                        if (addEditWindow.ShowDialog() == true)
+                        {
+                            // save position to restore
+                            int selectedIndex = datagridPatiens.SelectedIndex;
+
+                            fillDataFromDBtoDatagrid();
+                            // focus on the changed patient from saved position
+                            datagridPatiens.SelectedIndex = selectedIndex;
+                            // scroll patient list to the changed patient
+                            datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                            // popup notification                
+                        }
+                    }
+                    else
+                    {
+                        MaterialMessageBox.Show("У этого пользователя нету личной карточки", "Уведомление");
+                    }
+                    
                 }
             }
             catch (Exception)

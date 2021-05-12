@@ -23,13 +23,13 @@
         <Label FontSize="22" Content="Создание аккаунта" Background="Transparent" Foreground="Black" Margin="36,67,154,461"/>
 
         <Label FontSize="14" Content="Имя" Background="White" Foreground="Gray" Margin="36,104,324,433"></Label>
-        <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" Text="{Binding FirstName}" 
+        <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" 
                  VerticalContentAlignment="Center" x:Name="Name_textbox" Background="White" Margin="40,125,225,395" 
                  SelectionBrush="{x:Null}" TextChanged="Name_textbox_TextChanged" PreviewTextInput="onlyLetters"
                  materialDesign:HintAssist.Hint="Иван"/>
 
         <Label FontSize="14" Content="Фамилия" Background="White" Foreground="Gray" Margin="215,104,110,433"></Label>
-        <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" Text="{Binding Surname}" 
+        <TextBox  BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" 
                  VerticalContentAlignment="Center"  x:Name="Surname_textbox"   Background="White" Margin="220,125,45,395" 
                  SelectionBrush="{x:Null}" TextChanged="Surname_textbox_TextChanged" PreviewTextInput="onlyLetters"
                   materialDesign:HintAssist.Hint="Кузнецов"/>
@@ -40,7 +40,7 @@
                    
         <Label FontSize="14" Content="Пол" Background="White" Foreground="Gray"  Margin="40,247,250,295"></Label>
         <ComboBox Name="Gender" BorderThickness="1" BorderBrush="Black"  Height="30" Background="White" 
-                  Margin="40,275,190,260" Text="{Binding Gender}" materialDesign:HintAssist.Hint="Мужской">
+                  Margin="40,275,190,260"  materialDesign:HintAssist.Hint="Мужской">
             <ComboBoxItem  IsSelected="True">
                 Мужчина
             </ComboBoxItem>
@@ -51,7 +51,7 @@
 
         <Label FontSize="14" Content="Имя аккаунта" Background="White" Foreground="Gray"  Margin="36,318,265,220" ></Label>
         <TextBox BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" Height="30" VerticalContentAlignment="Center" 
-                 x:Name="login_textbox"  Margin="40,350,45,185" Text="{Binding Login}" MaxLength="24"
+                 x:Name="login_textbox"  Margin="40,350,45,185"  MaxLength="24"
                  SelectionBrush="{x:Null}" TextChanged="login_textbox_TextChanged" materialDesign:HintAssist.Hint="ivan21"/>
 
         <Label FontSize="14" Content="Пароль" Background="White" Foreground="Gray"  Margin="35,387,305,150" ></Label>
@@ -60,7 +60,7 @@
                      PasswordChanged="password_box_PasswordChanged" materialDesign:HintAssist.Hint="Не менее 8 символов"/>
 
         <TextBlock Name="ErrorMessage" Foreground="red" Style="{StaticResource MaterialDesignBody2TextBlock}" 
-                   Margin="40,452,135,93" Text="{Binding ErrorMes}"/>
+                   Margin="40,452,135,93" />
 
         <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" Content="Зарегистрировать" Click="Reg_Click" 
                  >

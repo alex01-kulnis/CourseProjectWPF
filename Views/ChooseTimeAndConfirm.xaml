@@ -61,16 +61,12 @@
                  SelectionBrush="{x:Null}" TextAlignment="Center"/>
 
             <Label FontSize="14" Content="Время :" Background="White" Foreground="Gray" Margin="216,326,217,209"/>
-            <ComboBox Name="TimeVisiting" BorderThickness="1" BorderBrush="Black" Height="30" Background="White" 
-                     FontSize="20" Margin="199,357,197,174"/>
-
-
-
-
+            <ComboBox Name="TimeVisiting" BorderThickness="1" BorderBrush="Black" Height="30" Background="White" FontSize="20" Margin="199,357,197,174"/>   
+            
             <TextBlock Name="ErrorMessage" Foreground="red" Style="{StaticResource MaterialDesignBody2TextBlock}" 
                    Margin="94,451,94,94" Text="{Binding ErrorMes}" TextAlignment="Center"/>
 
-            <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" Content="Зарегистрировать" Click="Recording_Click">
+            <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" Content="Забронировать талон" Click="Recording_Click">
                 <Button.Background>
                     <SolidColorBrush Color="#FF33C2F7"/>
                 </Button.Background>

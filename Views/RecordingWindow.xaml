@@ -45,8 +45,8 @@
             </StackPanel>
 
             <StackPanel HorizontalAlignment="Center">
-                <DataGrid Grid.Row="4" Grid.ColumnSpan="4" Name="datagridPatiens" SelectionUnit="FullRow" SelectionChanged="datagridPatiens_SelectionChanged"
-				  SelectionMode="Single" ItemsSource="{Binding info}" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="200" Width="1150"
+                <DataGrid  Name="datagridPatiens" SelectionUnit="FullRow" SelectionChanged="datagridPatiens_SelectionChanged"
+				  SelectionMode="Single" AutoGenerateColumns="False" ColumnWidth="*" Background="#FF33C2F7" Height="200" Width="1150"
                   IsReadOnly="True" >
                     <DataGrid.Resources>
                         <Style BasedOn="{StaticResource {x:Type DataGridColumnHeader}}" TargetType="{x:Type DataGridColumnHeader}">

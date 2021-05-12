@@ -54,7 +54,7 @@
 
         <TextBox Grid.Row="2" Name="textboxDateOfBirth" Margin="0,8,0,42" MaxLength="4" Text="{Binding YearOfBithday}" 
 				   materialDesign:HintAssist.Hint="Год рождения" Style="{StaticResource MaterialDesignFloatingHintTextBox}" 
-                 Grid.RowSpan="2"  PreviewTextInput="onlyDig"/>
+                 Grid.RowSpan="2"  PreviewTextInput="onlyDig" PreviewKeyDown="textbox_restrictSpace"/>
 
         <Button Command="{Binding find}" Grid.Row="2" Grid.Column="2" Name="buttonSearch" Margin="129,12,66,7" Background="#FF33C2F7" 
                 ToolTip="Поиск" Grid.ColumnSpan="2" Height="Auto" Click="buttonSearch_Click" Content="{materialDesign:PackIcon Size=23, Kind=Pageview}"></Button>
@@ -65,8 +65,7 @@
 				    Margin="107,26,102,10" Padding="4 0 0 0" Grid.Column="1" Width="177"> Список пацентов :</TextBlock>
         <DataGrid Grid.Row="4" Grid.ColumnSpan="4" Name="datagridPatiens" SelectionUnit="FullRow"
 				  SelectionMode="Single" ItemsSource="{Binding info}" AutoGenerateColumns="False" 
-                  IsReadOnly="True" ColumnWidth="*" Background="#FF33C2F7" SelectionChanged="datagridPatiens_SelectionChanged"
-				   >
+                  IsReadOnly="True" ColumnWidth="*" Background="#FF33C2F7" SelectionChanged="datagridPatiens_SelectionChanged">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
                     <Setter Property="BorderThickness" Value="0"/>
@@ -93,9 +92,8 @@
                 Background="#FF33C2F7" TextElement.FontSize="18" Content="{materialDesign:PackIcon Kind=Edit,Size=28}" Click="buttonEdit_Click"></Button>
         <Button Grid.Row="5" Grid.Column="2" Name="buttonRemove" Margin="5,10"  Content="{materialDesign:PackIcon Size=28, Kind=Delete}" Height="Auto"
                 Background="Red" ToolTip="Удалить пациента" Click="buttonRemove_Click"></Button>
-        <Button Grid.Row="5" Grid.Column="3" Name="buttonAdd"  ToolTip="Добавить пациента" 
-				Style="{StaticResource MaterialDesignFloatingActionButton}" Background="#FF33C2F7" Margin="0,5,20,10" 
-                HorizontalAlignment="Right" Height="Auto" Width="50" Click="buttonAdd_Click">
+        <Button Grid.Row="5" Grid.Column="3" Name="buttonAdd"  ToolTip="Добавить пациента" Background="#FF33C2F7" Margin="0,5,20,10" Style="{StaticResource MaterialDesignFloatingActionButton}" 
+				 HorizontalAlignment="Right" Height="Auto" Width="50" Click="buttonAdd_Click">
             <materialDesign:PackIcon Kind="Plus" Height="24" Width="24" />
         </Button>
     </Grid>

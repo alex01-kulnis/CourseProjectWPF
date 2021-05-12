@@ -18,7 +18,6 @@ namespace CourseProjectWPF.Models
         public DateTime VisitDay { get; set; }
         public string VisitTime { get; set; }        
         public int UserId { get; set; }
-        public bool IsVisited { get; set; }
 
         public virtual User User { get; set; }
     }

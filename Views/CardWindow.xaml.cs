@@ -56,7 +56,7 @@ namespace CourseProjectWPF.Views
                         Street_textbox.Text = db.MedCards.Find(thisUser.Id).Street.Trim();
                         House_textbox.Text = Convert.ToString(db.MedCards.Find(thisUser.Id).House);
                         Housing.Text = db.MedCards.Find(thisUser.Id).Housing.Trim();
-                        Flat_textbox.Text = Convert.ToString(db.MedCards.Find(thisUser.Id).Flat);
+                        Flat_textbox.Text = db.MedCards.Find(thisUser.Id).Flat.Trim();
                         PathImage = db.MedCards.Find(thisUser.Id).Image;
                         AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
                         Border.BorderThickness = new Thickness(0);
@@ -98,7 +98,7 @@ namespace CourseProjectWPF.Views
             return Regex.IsMatch(str, "[^0-9]+");
         }
 
-        private void login_textbox_TextChanged(object sender, TextChangedEventArgs e)
+        private void Housing_TextChanged(object sender, TextChangedEventArgs e)
         {
             string str = Housing.Text;
             Regex regex = new Regex("^[0-9]{0,3}[а-яА-Я]?$");
@@ -265,10 +265,7 @@ namespace CourseProjectWPF.Views
                             card.Street = Street_textbox.Text;
                             card.House = Convert.ToInt32(House_textbox.Text);
                             card.Housing = Housing.Text;
-                            if (Flat_textbox.Text != "")
-                            {
-                                card.Flat = Convert.ToInt32(Flat_textbox.Text);
-                            }                           
+                            card.Flat = Flat_textbox.Text;
                             card.Image = PathImage;
                             db.MedCards.AddRange(new List<MedCard> { card });
                             db.SaveChanges();
@@ -286,10 +283,7 @@ namespace CourseProjectWPF.Views
                             db.MedCards.Find(thisUser.Id).Street = Street_textbox.Text.Trim();                           
                             db.MedCards.Find(thisUser.Id).House = Convert.ToInt32(House_textbox.Text);
                             db.MedCards.Find(thisUser.Id).Housing = Housing.Text.Trim();
-                            if (Flat_textbox.Text != "")
-                            {
-                                db.MedCards.Find(thisUser.Id).Flat = Convert.ToInt32(Flat_textbox.Text);
-                            }                                                       
+                            db.MedCards.Find(thisUser.Id).Flat = Flat_textbox.Text.Trim();
                             db.MedCards.Find(thisUser.Id).Image = PathImage;
                             AdMainImage.Source = new BitmapImage(new Uri(PathImage, UriKind.Absolute));
                             db.SaveChanges();

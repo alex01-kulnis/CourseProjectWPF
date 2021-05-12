@@ -4,6 +4,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -51,5 +52,52 @@ namespace CourseProjectWPF.Views
             var recording = datagridPatiens.SelectedItem as HistoryVisiting;
             InfoForCard.Text = recording.Info;
         }
+
+        //FindBttn
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using (MyDbContext db = new MyDbContext())
+                {
+                    User thisUser = db.Users.Find(App.CurrentUser.Id);
+                    // first select all not archived patiens
+                    IQueryable<HistoryVisiting> queryable = db.HistoryVisitings.Where(p => p.UserId == thisUser.Id);                    
+                    // if year of birth field not empty
+                    if (!string.IsNullOrWhiteSpace(NumberOfMonth.Text))
+                    {
+                        // selection of patients with the entered year of birth
+                        int month = Convert.ToInt32(NumberOfMonth.Text);
+                        queryable = queryable.Where(p => p.VisitDay.Month == month);
+                    }
+
+                    // put query result to data grid table
+                    datagridPatiens.ItemsSource = queryable.ToList();
+                }
+            }
+            catch (Exception) { }
+        }
+        
+        private void buttonEraser_Click(object sender, RoutedEventArgs e)
+        {
+            ShowHistory();
+        }
+
+        //private void onlyDig(object sender, TextCompositionEventArgs e)
+        //{
+        //    e.Handled = IsStringNumeric(e.Text);
+        //}
+
+        //// check string has numbers
+        //bool IsStringNumeric(string str)
+        //{
+        //    return Regex.IsMatch(str, "[^0-9]+");
+        //}
+
+        //private void textbox_restrictSpace(object sender, KeyEventArgs e)
+        //{
+        //    if (e.Key == Key.Space)
+        //        e.Handled = true;
+        //}
     }
 }

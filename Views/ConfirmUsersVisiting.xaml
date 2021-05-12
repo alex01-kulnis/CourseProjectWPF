@@ -10,13 +10,9 @@
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"        
         FontFamily="pack://application:,,,/MaterialDesignThemes.Wpf;component/Resources/Roboto/#Roboto"
-        Title="ConfirmUsersVisiting"  Height="580" Width="780" WindowStyle="None" Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
+        Title="ConfirmUsersVisiting"  Height="580" Width="1480" WindowStyle="None" Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico">
     <Grid>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="535*"/>
-            <ColumnDefinition Width="237*"/>
-        </Grid.ColumnDefinitions>
-        <materialDesign:ColorZone Padding="14" Background="#FF33C2F7" Height="58" Grid.ColumnSpan="2">
+        <materialDesign:ColorZone Padding="14" Background="#FF33C2F7" Height="58">
             <StackPanel Orientation="Horizontal">
                 <materialDesign:PackIcon Kind="Hospital" Height="30" Width="30" />
                 <TextBlock FontSize="14" VerticalAlignment="Center" Margin="16 0 0 0">MedicalApp</TextBlock>
@@ -24,17 +20,23 @@
         </materialDesign:ColorZone>
         <Button x:Name="buttonEra" Margin="0,10,14,527" 
 				 ToolTip="Вернуться на главную страницу" HorizontalAlignment="Right"  Width="53" Height="Auto" Background="#FF33C2F7"
-                 IsEnabled="True" Grid.Row="0" Click="Back_Click" Grid.Column="1">
+                 IsEnabled="True"  Click="Back_Click" >
             <Button.ContentTemplate >
                 <DataTemplate >
-                    <Image   Source="D:\\Лабы\\2 курс\\2 сем\\курсач\\CourseProjectWPF\\Resourses\\back.ico" />
+                    <Image Source="D:\\Лабы\\2 курс\\2 сем\\курсач\\CourseProjectWPF\\Resourses\\back.ico"/>
                 </DataTemplate>
             </Button.ContentTemplate>
         </Button>
 
-        <Label Foreground="Red" FontSize="20" Content="Список записей пользователя :" Margin="210,67,5,467"/>
-        <DataGrid Name="datagridPatiens" SelectionUnit="FullRow" ItemsSource="{Binding info}" AutoGenerateColumns="False" IsReadOnly="True"  Background="#FF33C2F7" Margin="0,110,0,262"
-				  SelectionMode="Single" SelectionChanged="datagridPatiens_SelectionChanged" Grid.ColumnSpan="2">
+        <Label Foreground="Red" FontSize="20" Content="Активные талоны" Margin="1105,75,172,459"/>
+        <Label Foreground="Red" FontSize="20" Content="История посещений" Margin="172,75,1082,459"/>
+        
+        <TextBox IsReadOnly="True" SelectionBrush="{x:Null}"  x:Name="FIO" FontSize="18" BorderThickness="0 0 0 1" BorderBrush="Black" Margin="500,87,462,447" HorizontalContentAlignment="Center" VerticalContentAlignment="Center" Width="510"/>
+
+        <materialDesign:PackIcon Background="Red" Kind="Hospital" Height="130" Width="107" Margin="682,221,0,0" />
+
+        <DataGrid Name="datagridPatiens" SelectionUnit="FullRow" AutoGenerateColumns="False" IsReadOnly="True"  Background="#FF33C2F7" Margin="828,130,27,262"
+				  SelectionMode="Single" SelectionChanged="datagridPatiens_SelectionChanged">
             <DataGrid.CellStyle>
                 <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
                     <Setter Property="BorderThickness" Value="0"/>
@@ -55,12 +57,39 @@
             </DataGrid.Columns>
         </DataGrid>
 
-        <TextBox  SelectionBrush="{x:Null}"  x:Name="InfoForCard" FontSize="14" BorderThickness="1" BorderBrush="Black"  Margin="28,330,27,77" AcceptsReturn="True" Grid.ColumnSpan="2" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+        <DataGrid Name="datagridHistory" SelectionUnit="FullRow" AutoGenerateColumns="False" IsReadOnly="True"  Background="#FF33C2F7" Margin="30,130,825,262"
+				  SelectionMode="Single" SelectionChanged="datagridHistory_SelectionChanged" MouseDoubleClick="datagridHistory_MouseDoubleClick">
+            <DataGrid.CellStyle>
+                <Style TargetType="DataGridCell" BasedOn="{StaticResource {x:Type DataGridCell}}">
+                    <Setter Property="BorderThickness" Value="0"/>
+                    <Style.Triggers>
+                        <Trigger Property="IsSelected" Value="True">
+                            <Setter Property="Background" Value="Gray"/>
+                            <Setter Property="Foreground" Value="Black"/>
+                        </Trigger>
+                    </Style.Triggers>
+                </Style>
+            </DataGrid.CellStyle>
+            <DataGrid.Columns>
+                <DataGridTextColumn  Width="0.3*" Header="ФИО" Binding="{Binding FIO}"/>
+                <DataGridTextColumn Width="0.4*"  Header="Доктор"  Binding="{Binding Doctor}"/>
+                <DataGridTextColumn Width="0.3*"  Header="Кабинет"  Binding="{Binding Cabinet}"/>
+                <DataGridTextColumn Width="0.5*" Header="День визита"  Binding="{Binding VisitDay, StringFormat={}{0:dd.MM.yyyy}}"/>
+                <DataGridTextColumn Width="0.4*" Header="Время визита"  Binding="{Binding VisitTime}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+
+        <TextBox  SelectionBrush="{x:Null}"  x:Name="InfoForCardConfirm" FontSize="14" BorderThickness="1" BorderBrush="Black"  Margin="828,330,27,77" AcceptsReturn="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
          ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
 
-        <Button x:Name="buttonConfirmVisiting" Content="Подтвердить" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="73,511,0,22" Foreground="Black" ToolTip="Подтвердить посещение пациента" Width="137" Height="39" FontSize="16"
-                    Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="ConfirmVisiting_Click" Grid.Column="1"/>
-        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="28,511,0,22" Foreground="Black" ToolTip="Удалить запись" Width="137" Height="39"
+        <TextBox SelectionBrush="{x:Null}"  x:Name="InfoForCheck" FontSize="14" BorderThickness="1" BorderBrush="Black"  Margin="27,330,825,77" AcceptsReturn="True" ScrollViewer.HorizontalScrollBarVisibility="Disabled"
+         ScrollViewer.VerticalScrollBarVisibility="Auto" ScrollViewer.CanContentScroll="True"/>
+
+        <Button x:Name="buttonСhangeHistory" Content="Изменить" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="253,523,0,10" Foreground="Black" ToolTip="Изменить данные в истории посещений" Width="137" Height="39" FontSize="16"
+                    Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="СhangeHistory_Click"/>
+        <Button x:Name="buttonConfirmVisiting" Content="Подтвердить" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1085,523,0,10" Foreground="Black" ToolTip="Подтвердить посещение пациента" Width="137" Height="39" FontSize="16"
+                    Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="ConfirmVisiting_Click"/>
+        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="682,381,0,152" Foreground="Black" ToolTip="Удалить запись" Width="107" Height="39"
                     Background="red" BorderBrush="#5AA9B0" FontSize="16" Click="DelRecording_Click"/>
     </Grid>
 </Window>
