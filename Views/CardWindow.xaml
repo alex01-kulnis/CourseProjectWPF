@@ -85,18 +85,18 @@
                 <StackPanel Margin="0 10" Orientation="Horizontal">
                     <Label FontSize="20" Width="60" Height="40" Content="Дом :" Background="White" Foreground="Gray" ></Label>
                     <TextBox  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center"  
-                     Background="White"   SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig"
+                     Background="White"   SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig" MaxLength="4"
                  materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="House_textbox" TextChanged="House_textbox_TextChanged"/>
                 </StackPanel>
                 <StackPanel Margin="0 10" Orientation="Horizontal">
                     <Label FontSize="20" Width="86" Height="40" Content="Корпус :" Background="White" Foreground="Gray"/>
                     <TextBox x:Name="Housing"  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center"  
-                     Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" TextChanged="Housing_TextChanged" 
+                     Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" TextChanged="Housing_TextChanged" MaxLength="4"
                  materialDesign:HintAssist.Hint="4a" PreviewKeyDown="textbox_restrictSpace"/>
                 </StackPanel>
                 <StackPanel Margin="0 10" Orientation="Horizontal">
-                    <Label FontSize="20" Width="108" Height="40" Content="Квартира :" Background="White" Foreground="Gray" ></Label>
-                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="54" Height="40" VerticalContentAlignment="Center"  
+                    <Label FontSize="20" Width="108" Height="40" Content="Квартира :" Background="White" Foreground="Gray" />
+                    <TextBox  BorderThickness="1" BorderBrush="Black"  Width="54" Height="40" VerticalContentAlignment="Center" MaxLength="4"
                      Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig"
                  materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="Flat_textbox" />
                 </StackPanel>

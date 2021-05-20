@@ -1,0 +1,228 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<ClassDiagram MajorVersion="1" MinorVersion="1">
+  <Class Name="CourseProjectWPF.Models.User" Collapsed="true">
+    <Position X="19.25" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AFACAEAAAAAAAACAAAAAIAAADAAIAAACAgAQAAAAAQA=</HashCode>
+      <FileName>Models\User.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Models.Recording" Collapsed="true">
+    <Position X="19.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgADAAAAAAAAAAAAEAAAAAgACAAAAAQAAQAAAAAAAAA=</HashCode>
+      <FileName>Models\Recording.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Models.MedCard" Collapsed="true">
+    <Position X="19.25" Y="4.25" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAABASAAAAAAgACIAAAAMAQABAAAABAAAAIAAAAAAAA=</HashCode>
+      <FileName>Models\MedCard.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Models.HistoryVisiting" Collapsed="true">
+    <Position X="19.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgADAAAAAAAAAAAAEAAAAAgACAAAAAQAAQAAAEAAAAA=</HashCode>
+      <FileName>Models\HistoryVisiting.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Models.Doctor" Collapsed="true">
+    <Position X="19.25" Y="3.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AgAiACAAIAAAAAAAAAAAAAAADAAAAAAQAAAAAAAAAAA=</HashCode>
+      <FileName>Models\Doctor.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Repositories.EFUserRepository" Collapsed="true">
+    <Position X="15.75" Y="2.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAACAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAABABAAAAA=</HashCode>
+      <FileName>Repositories\EFUserRepository.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.DB.DB" Collapsed="true">
+    <Position X="15.5" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAIAAAAAAAAgAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>DB\DB.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.DB.MyDbContext" Collapsed="true">
+    <Position X="17.25" Y="0.5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AEAAACAAAAAAAAAAAAAAAAAAEAAIAgAAAgAAAAAAAAA=</HashCode>
+      <FileName>DB\MyDbContext.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.App" Collapsed="true">
+    <Position X="7.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAIAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>App.xaml.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.AdminAddClientModel" Collapsed="true">
+    <Position X="13.25" Y="9" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAIAAAACAAAA=</HashCode>
+      <FileName>ViewModels\AdminAddClientModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.AdminChangeClientModel" Collapsed="true">
+    <Position X="13.25" Y="9.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ViewModels\AdminChangeClientModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.ChooseTimeAndConfirmModel" Collapsed="true">
+    <Position X="13.25" Y="8" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAEAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ViewModels\ChooseTimeAndConfirmModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.MainAdminWindowModel" Collapsed="true">
+    <Position X="13.25" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAQBACAAAQAAgAABAAIAAAAyAAiAAiAAgA=</HashCode>
+      <FileName>ViewModels\MainAdminWindowModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.MainClientWindowModel" Collapsed="true">
+    <Position X="11" Y="7" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAEAAAABAAAAAAAAAAAAAAAAAAAAAAAAACAAAA=</HashCode>
+      <FileName>ViewModels\MainClientWindowModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.RegistrViewModel" Collapsed="true">
+    <Position X="9" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AQAAAEEAACAQJEKAIAAAIAABhAEAAACDAYAQAECAAQA=</HashCode>
+      <FileName>ViewModels\RegistrViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Class Name="CourseProjectWPF.Views.AdminAddClient" Collapsed="true">
+    <Position X="13.25" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAIgAAgAAIAAAAAAQAgAAAAAAQA=</HashCode>
+      <FileName>Views\AdminAddClient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.AdminChangeClient" Collapsed="true">
+    <Position X="13.25" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAgACAAAAIgAAgAQAAAAAEgYAgAAAAAAAA=</HashCode>
+      <FileName>Views\AdminChangeClient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.AdminOpenCardPacient" Collapsed="true">
+    <Position X="13.25" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAQAAAECSABAIAgAgARAAAYAAIEAgAgAAAAQA=</HashCode>
+      <FileName>Views\AdminOpenCardPacient.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.AuthView" Collapsed="true">
+    <Position X="9" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAgQAAAAAAAAAA=</HashCode>
+      <FileName>Views\AuthView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.CardWindow" Collapsed="true">
+    <Position X="11" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAQAAAAAAAAAECSABAIAgAgABAAAYAAAEAgAgAAAAQA=</HashCode>
+      <FileName>Views\CardWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.ChooseTimeAndConfirm" Collapsed="true">
+    <Position X="11" Y="3" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAABAgABAAAAAAAAAAABAAgIABAAAAAAAA=</HashCode>
+      <FileName>Views\ChooseTimeAndConfirm.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.ConfirmUsersVisiting" Collapsed="true">
+    <Position X="13.25" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAQAACAIAAAABEACSAQAoDAAAoAAAAAAAAAAA=</HashCode>
+      <FileName>Views\ConfirmUsersVisiting.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.HistotyVisitingWindow" Collapsed="true">
+    <Position X="11" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAQAAAAAAAAAAAAAAAAAAAAgCAAAgAAAAABAAAAA=</HashCode>
+      <FileName>Views\HistotyVisitingWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.Loader" Collapsed="true">
+    <Position X="7.25" Y="8.75" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <FileName>Views\Loader.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.MainAdminWindow" Collapsed="true">
+    <Position X="13.25" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAEABCEKAAAAgAgAAAAAgCYEAgABAAAAAAAAA=</HashCode>
+      <FileName>Views\MainAdminWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.MainClientWindow" Collapsed="true">
+    <Position X="11" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAACABAAAAAAAAAAAAAAAABAAAABAgCAAAAAAACAA=</HashCode>
+      <FileName>Views\MainClientWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.RecordingWindow" Collapsed="true">
+    <Position X="11" Y="6" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAABiAIAAAAAAAAAAAAAAAAAAAAAAIAAIAAA=</HashCode>
+      <FileName>Views\RecordingWindow.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.Views.RegistrView" Collapsed="true">
+    <Position X="9" Y="4" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAAAAAAAAAACAAAAIgAAgAAIAAAAAAQAgAAAAAAQA=</HashCode>
+      <FileName>Views\RegistrView.xaml.cs</FileName>
+    </TypeIdentifier>
+    <Lollipop Position="0.2" />
+  </Class>
+  <Class Name="CourseProjectWPF.ViewModels.AuthViewModel" Collapsed="true">
+    <Position X="9" Y="5" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>AAAAQAAAAAAAAwAAAAAAAAAAAAEAACADEIQQABCAAAA=</HashCode>
+      <FileName>ViewModels\AuthViewModel.cs</FileName>
+    </TypeIdentifier>
+  </Class>
+  <Interface Name="CourseProjectWPF.Repositories.IUserRepository" Collapsed="true">
+    <Position X="15.75" Y="2" Width="1.5" />
+    <TypeIdentifier>
+      <HashCode>EAAAAAAAAAAAAIAAAAAAAAAAAAAAAAAAAAABABAAAAA=</HashCode>
+      <FileName>Repositories\IUserRepository.cs</FileName>
+    </TypeIdentifier>
+  </Interface>
+  <Font Name="Segoe UI" Size="9" />
+</ClassDiagram>

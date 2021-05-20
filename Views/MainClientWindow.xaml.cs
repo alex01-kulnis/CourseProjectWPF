@@ -15,6 +15,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 
 namespace CourseProjectWPF.Views
 {
@@ -28,7 +29,18 @@ namespace CourseProjectWPF.Views
         {
             InitializeComponent();
             DataContext = a;
-                        
+
+            time.Text = "Текущие дата и время:  " + DateTime.Now.ToLongDateString() + "  " + DateTime.Now.ToLongTimeString();
+            DispatcherTimer dt = new DispatcherTimer();
+            dt.Interval = TimeSpan.FromSeconds(1);
+            dt.Tick += dtTicker;
+            dt.Start();
+        }
+        
+        //таймер
+        private void dtTicker(object sender,EventArgs e)
+        {
+            time.Text = "Текущие дата и время:  " + DateTime.Now.ToLongDateString() + "  " + DateTime.Now.ToLongTimeString();
         }
 
         #region Menu Buttons       
@@ -85,7 +97,15 @@ namespace CourseProjectWPF.Views
                     }
                 }
                 else
+                {
                     MaterialMessageBox.Show("Заполните личную карточку, чтобы записаться к врачу", "Уведомление");
+                    if (ButtonCloseMenu.Visibility == Visibility.Visible)
+                    {
+                        ButtonOpenMenu.Visibility = Visibility.Visible;
+                        ButtonCloseMenu.Visibility = Visibility.Collapsed;
+                    }                       
+                }    
+                    
             }                                                  
         }
 
@@ -113,7 +133,15 @@ namespace CourseProjectWPF.Views
                     }
                 }
                 else
+                {
                     MaterialMessageBox.Show("У вас не может быть истории посещений, т.к. вы не заполнили личную карточку ", "Уведомление");
+                    if (ButtonCloseMenu.Visibility == Visibility.Visible)
+                    {
+                        ButtonOpenMenu.Visibility = Visibility.Visible;
+                        ButtonCloseMenu.Visibility = Visibility.Collapsed;
+                    }
+                }
+                    
             }
         }
         #endregion        

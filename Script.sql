@@ -4,7 +4,7 @@ use Kulnis_Kp;
 
 insert into  Users  (FirstName, Surname, Gender, Login, Password,Bday,IsAdmin )
 	values	( 'admin', 'admin', 'Мужчина','admin', 'f6fdffe48c908deb0f4c3bd36c032e72',23-04-2020,1);
-	--пароль admin admin
+	--пароль adminadmin
 
 --
 --Create table Doctors
@@ -26,3 +26,10 @@ insert into  Doctors (FIO, Post, Cabinet, Evenday_start, Evenday_end,Oddday_star
 
 	--insert into  Doctors (FIO, Post, Cabinet, Evenday_start )
 	--values	( 'Иванова В.К.', 'Врач-терапевт', '102','08:00');
+insert into  HistoryVisitings( FIO, Doctor, Cabinet, VisitDay,VisitTime,Info,UserId )
+	values	( 'Иванова В.К.', 'Врач-терапевт', '102','13-04-2021', '10:00','info',1),
+			( 'Иванова В.К.', 'Врач-терапевт', '102','15-12-2020', '10:00','info',1);
+
+insert into  HistoryVisitings( FIO, Doctor, Cabinet, VisitDay,VisitTime,Info,UserId )
+	values	( 'Иванова В.К.', 'Врач-терапевт', '102','13-04-2020', '10:00','info',1);
+		

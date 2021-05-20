@@ -38,8 +38,8 @@
         <Label FontSize="14" Content="Дата рождения" Background="White" Foreground="Gray"  Margin="35,175,255,365"></Label>
         <DatePicker DisplayDateStart="1900/01/01" DisplayDateEnd="{Binding DateTime.Now}"  FontSize="14" BorderThickness="0,0,0,1" BorderBrush="Black" x:Name="Bday_textbox" Margin="40,197,45,325" 
                    materialDesign:HintAssist.Hint="21.02.1983" SelectedDateChanged="Bday_textbox_SelectedDateChanged"
-                    SelectedDateFormat="Short" SelectedDate="{Binding AvailableFrom, Mode=TwoWay}"   DisplayDate="{Binding DateTime.Now}"/>
-        
+                    SelectedDateFormat="Short" />
+
         <Label FontSize="14" Content="Пол" Background="White" Foreground="Gray"  Margin="40,247,250,295"></Label>
         <ComboBox Name="Gender" BorderThickness="1" BorderBrush="Black"  Height="30" Background="White" 
                   Margin="40,275,190,260" Text="{Binding Gender}" materialDesign:HintAssist.Hint="Мужской">
@@ -59,14 +59,11 @@
         <Label FontSize="14" Content="Пароль" Background="White" Foreground="Gray"  Margin="35,387,305,150" ></Label>
         <PasswordBox BorderThickness="1" BorderBrush="Black" Padding="2, 0,0,0" VerticalContentAlignment="Center" 
                      Height="30"  x:Name="password_box" Background="White" Margin="40,415,45,120" MaxLength="32"
-                     PasswordChanged="password_box_PasswordChanged" materialDesign:HintAssist.Hint="Не менее 8 символов"
-                     />
+                     PasswordChanged="password_box_PasswordChanged" materialDesign:HintAssist.Hint="Не менее 8 символов"/>
 
-        <TextBlock Name="ErrorMessage" Foreground="red" Style="{StaticResource MaterialDesignBody2TextBlock}" 
-                   Margin="40,452,135,93" Text="{Binding ErrorMes}" TextDecorations="Underline"/>
+        <TextBlock Name="ErrorMessage" Foreground="red" Style="{StaticResource MaterialDesignBody2TextBlock}" Margin="40,452,135,93" Text="{Binding ErrorMes}" TextDecorations="Underline"/>
 
-        <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" 
-                Content="Зарегистрироваться" Click="Reg_Click" >
+        <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" Content="Зарегистрироваться" Click="Reg_Click" >
             <Button.Background>
                 <SolidColorBrush Color="#FF33C2F7"/>
             </Button.Background>
@@ -79,8 +76,5 @@
                 <SolidColorBrush Color="#FF33C2F7"/>
             </Button.Background>
         </Button>
-
-
-
     </Grid>
 </Window>

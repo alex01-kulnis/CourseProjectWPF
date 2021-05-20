@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+ <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <!-- Diagram content (shape and connector positions) -->
+    <edmx:Diagrams>
+      <Diagram DiagramId="617aa9fb8a6545bdb7e6f61fa07f1a77" Name="Diagram1" ZoomLevel="66">
+        <EntityTypeShape EntityType="Kulnis_KPModel.Doctors" Width="1.5" PointX="10.25" PointY="5.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kulnis_KPModel.HistoryVisitings" Width="1.5" PointX="14.75" PointY="1.875" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kulnis_KPModel.MedCards" Width="1.5" PointX="14.75" PointY="5.375" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kulnis_KPModel.Recordings" Width="1.5" PointX="14.75" PointY="9.625" IsExpanded="true" />
+        <EntityTypeShape EntityType="Kulnis_KPModel.Users" Width="1.5" PointX="12.5" PointY="5.25" IsExpanded="true" />
+        <AssociationConnector Association="Kulnis_KPModel.FK_dbo_HistoryVisitings_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Kulnis_KPModel.FK_dbo_MedCards_dbo_Users_ID" ManuallyRouted="false" />
+        <AssociationConnector Association="Kulnis_KPModel.FK_dbo_Recordings_dbo_Users_UserId" ManuallyRouted="false" />
+        <AssociationConnector Association="Kulnis_KPModel.UserDoctors" ManuallyRouted="false" />
+      </Diagram>
+    </edmx:Diagrams>
+  </edmx:Designer>
+</edmx:Edmx>

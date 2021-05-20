@@ -8,7 +8,7 @@
         mc:Ignorable="d"
         TextElement.FontWeight="Medium"
         TextElement.FontSize="16"
-        Title="MedicalApp" MinHeight="720" Height="720" MinWidth="1280" Width="1280" ResizeMode="CanMinimize"
+        Title="Пациент" MinHeight="720" Height="720" MinWidth="1280" Width="1280" ResizeMode="CanMinimize"
         Icon="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\doctor.ico" >
 
     <Window.Resources>
@@ -68,9 +68,18 @@
         <Grid Height="55" VerticalAlignment="Top" Background="#FF33C2F7">
             <materialDesign:ColorZone Padding="16" Background="#FF33C2F7">
                 <StackPanel Orientation="Horizontal">
-                    <materialDesign:PackIcon Kind="Hospital" Height="27" Width="30" Margin="543 0 -78 0"/>
-                    <TextBlock VerticalAlignment="Center" Margin="93 0 0 0"><Run Text="MedicalApp"/></TextBlock>
-                    <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="341 0 0 0">Tел. регистратуры : 61-92-23</TextBlock>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock x:Name="time" Foreground="Black" VerticalAlignment="Center" Margin="45 0 0 0" Width="360"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <materialDesign:PackIcon Kind="Hospital" Height="27" Width="30" Margin="185 0 0 0"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock VerticalAlignment="Center" Margin="0 0 0 0"><Run Text="MedicalApp"/></TextBlock>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Foreground="Black" VerticalAlignment="Center" Margin="305 0 0 0">Tел. регистратуры : 61-92-23</TextBlock>
+                    </StackPanel>
                 </StackPanel>
             </materialDesign:ColorZone>
         </Grid>
@@ -119,7 +128,6 @@
                     </Button>
                 </StackPanel>
             </StackPanel>
-            <materialDesign:MaterialDateDisplay   IsEnabled="True" Margin="8" Grid.Row="1" VerticalAlignment="Bottom" HorizontalAlignment="Center" />
         </Grid>
         <Grid Background="White" x:Name="GridMain" Margin="60,60,0,0">
             <Image Source="D:\Лабы\2 курс\2 сем\курсач\CourseProjectWPF\Resourses\Hospital.jpg" Margin="45,70,99,76" Grid.RowSpan="2"></Image>

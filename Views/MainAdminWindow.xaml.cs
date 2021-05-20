@@ -25,7 +25,7 @@ namespace CourseProjectWPF.Views
     public partial class MainAdminWindow : Window
     {
         MainAdminWindowModel a = new MainAdminWindowModel();
-        
+
         public MainAdminWindow()
         {
             InitializeComponent();
@@ -70,9 +70,9 @@ namespace CourseProjectWPF.Views
         void buttonsEditRemoveStateChange()
         {
             // to make buttons enabled only when patient was chosen
-            OpenVisitUser.IsEnabled = buttonEdit.IsEnabled = buttonRemove.IsEnabled =  (datagridPatiens.SelectedItems.Count > 0);
+            OpenVisitUser.IsEnabled = buttonEdit.IsEnabled = buttonRemove.IsEnabled = OpenCardPacient.IsEnabled = (datagridPatiens.SelectedItems.Count > 0);
         }
-                       
+
 
         #region Validation
         private void onlyLetters(object sender, TextCompositionEventArgs e)
@@ -133,7 +133,7 @@ namespace CourseProjectWPF.Views
                     datagridPatiens.ItemsSource = queryable.ToList();
                 }
             }
-            catch (Exception){}            
+            catch (Exception) { }
         }
 
         private void buttonEraser_Click(object sender, RoutedEventArgs e)
@@ -174,7 +174,7 @@ namespace CourseProjectWPF.Views
             }
             catch (Exception)
             {
-            }                    
+            }
         }
 
         private void buttonRemove_Click(object sender, RoutedEventArgs e)
@@ -208,8 +208,8 @@ namespace CourseProjectWPF.Views
                         {
                             db.Users.Remove(pacient);
                             db.MedCards.Remove(card);
-                        }                        
-                        
+                        }
+
                         // save
                         db.SaveChanges();
                         // update data grid list
@@ -221,8 +221,8 @@ namespace CourseProjectWPF.Views
                     }
                 }
             }
-            catch (Exception ex){}
-            
+            catch (Exception ex) { }
+
         }
 
         // edit patient button click
@@ -254,9 +254,48 @@ namespace CourseProjectWPF.Views
             }
             catch (Exception)
             {
-            }          
+            }
         }
 
+        //открыть карту пациента
+        private void Clicl_OpenCardPacient(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                User pacient = datagridPatiens.SelectedItem as User;
+                using (MyDbContext db = new MyDbContext())
+                {
+                    // check patient was chosen in list
+                    if (datagridPatiens.SelectedItems.Count <= 0)
+                        return;
+
+                    MedCard card = new MedCard();
+                    card = db.MedCards.Where(b => b.ID == pacient.Id).FirstOrDefault();
+
+                    // open add patient window with filled fields
+                    AdminOpenCardPacient addEditWindow = new AdminOpenCardPacient(datagridPatiens.SelectedItem as User);
+
+                    // update data grid if patient was changed 
+                    if (addEditWindow.ShowDialog() == true)
+                    {
+                        // save position to restore
+                        int selectedIndex = datagridPatiens.SelectedIndex;
+
+                        fillDataFromDBtoDatagrid();
+                        // focus on the changed patient from saved position
+                        datagridPatiens.SelectedIndex = selectedIndex;
+                        // scroll patient list to the changed patient
+                        datagridPatiens.ScrollIntoView(datagridPatiens.SelectedItem);
+                        // popup notification                
+                    }
+                }
+            }
+            catch (Exception)
+            {
+            }
+        }
+
+        //подтверждение посещения
         private void ConfirmVisited_Click(object sender, RoutedEventArgs e)
         {
             try
@@ -292,15 +331,17 @@ namespace CourseProjectWPF.Views
                     }
                     else
                     {
-                        MaterialMessageBox.Show("У этого пользователя нету личной карточки", "Уведомление");
+                        MaterialMessageBox.Show("У этого пользователя не может быть посещений, т.к. нету личной карточки", "Уведомление");
                     }
-                    
+
                 }
             }
             catch (Exception)
             {
             }
         }
-        #endregion        
+        #endregion
+
+
     }
 }

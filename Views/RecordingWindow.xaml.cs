@@ -97,7 +97,7 @@ namespace CourseProjectWPF.Views
                     {
                         if (a.Date <= DateTime.Now.Date)
                         {
-                            Error_Message.Text = "Некорректное дата";
+                            Error_Message.Text = "Некорректная дата";
                         }                            
                         else
                         {

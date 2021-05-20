@@ -1,0 +1,441 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="Хранилище Kulnis_KPModel" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Post" Type="nvarchar(max)" />
+          <Property Name="Cabinet" Type="nvarchar(max)" />
+          <Property Name="Evenday_start" Type="datetime" Nullable="false" />
+          <Property Name="Evenday_end" Type="datetime" Nullable="false" />
+          <Property Name="Oddday_start" Type="datetime" Nullable="false" />
+          <Property Name="Oddday_end" Type="datetime" Nullable="false" />
+        </EntityType>
+        <EntityType Name="HistoryVisitings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Doctor" Type="nvarchar(max)" />
+          <Property Name="Cabinet" Type="nvarchar(max)" />
+          <Property Name="VisitDay" Type="datetime" Nullable="false" />
+          <Property Name="VisitTime" Type="nvarchar(max)" />
+          <Property Name="Info" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="MedCards">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" />
+          <Property Name="Name" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="Patronymic" Type="nvarchar(max)" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="BDay" Type="datetime" Nullable="false" />
+          <Property Name="City" Type="nvarchar(max)" />
+          <Property Name="Street" Type="nvarchar(max)" />
+          <Property Name="House" Type="int" Nullable="false" />
+          <Property Name="Housing" Type="nvarchar(max)" />
+          <Property Name="Flat" Type="nvarchar(max)" />
+          <Property Name="Image" Type="nvarchar(max)" />
+        </EntityType>
+        <EntityType Name="Recordings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="FIO" Type="nvarchar(max)" />
+          <Property Name="Doctor" Type="nvarchar(max)" />
+          <Property Name="Cabinet" Type="nvarchar(max)" />
+          <Property Name="VisitDay" Type="datetime" Nullable="false" />
+          <Property Name="VisitTime" Type="nvarchar(max)" />
+          <Property Name="UserId" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="UserDoctors">
+          <Key>
+            <PropertyRef Name="User_Id" />
+            <PropertyRef Name="Doctor_Id" />
+          </Key>
+          <Property Name="User_Id" Type="int" Nullable="false" />
+          <Property Name="Doctor_Id" Type="int" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RecordingId" Type="int" />
+          <Property Name="FirstName" Type="nvarchar(max)" />
+          <Property Name="Surname" Type="nvarchar(max)" />
+          <Property Name="BDay" Type="datetime" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar(max)" />
+          <Property Name="Login" Type="nvarchar" MaxLength="450" />
+          <Property Name="Password" Type="nvarchar(max)" />
+          <Property Name="IsAdmin" Type="bit" Nullable="false" />
+        </EntityType>
+        <Association Name="FK_dbo_HistoryVisitings_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistoryVisitings" Type="Self.HistoryVisitings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryVisitings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MedCards_dbo_Users_ID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="MedCards" Type="Self.MedCards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedCards">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Recordings_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recordings" Type="Self.Recordings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recordings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserDoctors_dbo_Doctors_Doctor_Id">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDoctors" Type="Self.UserDoctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Doctors">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDoctors">
+              <PropertyRef Name="Doctor_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_UserDoctors_dbo_Users_User_Id">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="UserDoctors" Type="Self.UserDoctors" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="UserDoctors">
+              <PropertyRef Name="User_Id" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="Хранилище Kulnis_KPModelContainer">
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="HistoryVisitings" EntityType="Self.HistoryVisitings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="MedCards" EntityType="Self.MedCards" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Recordings" EntityType="Self.Recordings" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="UserDoctors" EntityType="Self.UserDoctors" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Users" EntityType="Self.Users" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK_dbo_HistoryVisitings_dbo_Users_UserId" Association="Self.FK_dbo_HistoryVisitings_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HistoryVisitings" EntitySet="HistoryVisitings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MedCards_dbo_Users_ID" Association="Self.FK_dbo_MedCards_dbo_Users_ID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MedCards" EntitySet="MedCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Recordings_dbo_Users_UserId" Association="Self.FK_dbo_Recordings_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recordings" EntitySet="Recordings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserDoctors_dbo_Doctors_Doctor_Id" Association="Self.FK_dbo_UserDoctors_dbo_Doctors_Doctor_Id">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="UserDoctors" EntitySet="UserDoctors" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_UserDoctors_dbo_Users_User_Id" Association="Self.FK_dbo_UserDoctors_dbo_Users_User_Id">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="UserDoctors" EntitySet="UserDoctors" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="Kulnis_KPModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Doctors">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Post" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Evenday_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Evenday_end" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Oddday_start" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Oddday_end" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="Users" Relationship="Self.UserDoctors" FromRole="Doctors" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="HistoryVisitings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Doctor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisitDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VisitTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Info" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_HistoryVisitings_dbo_Users_UserId" FromRole="HistoryVisitings" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="MedCards">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" />
+          <Property Name="Name" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Patronymic" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="City" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Street" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="House" Type="Int32" Nullable="false" />
+          <Property Name="Housing" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Flat" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Image" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_MedCards_dbo_Users_ID" FromRole="MedCards" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Recordings">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="FIO" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Doctor" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Cabinet" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="VisitDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="VisitTime" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="UserId" Type="Int32" Nullable="false" />
+          <NavigationProperty Name="Users" Relationship="Self.FK_dbo_Recordings_dbo_Users_UserId" FromRole="Recordings" ToRole="Users" />
+        </EntityType>
+        <EntityType Name="Users">
+          <Key>
+            <PropertyRef Name="Id" />
+          </Key>
+          <Property Name="Id" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="RecordingId" Type="Int32" />
+          <Property Name="FirstName" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Surname" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="BDay" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="Gender" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="Login" Type="String" MaxLength="450" FixedLength="false" Unicode="true" />
+          <Property Name="Password" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="IsAdmin" Type="Boolean" Nullable="false" />
+          <NavigationProperty Name="HistoryVisitings" Relationship="Self.FK_dbo_HistoryVisitings_dbo_Users_UserId" FromRole="Users" ToRole="HistoryVisitings" />
+          <NavigationProperty Name="MedCards" Relationship="Self.FK_dbo_MedCards_dbo_Users_ID" FromRole="Users" ToRole="MedCards" />
+          <NavigationProperty Name="Recordings" Relationship="Self.FK_dbo_Recordings_dbo_Users_UserId" FromRole="Users" ToRole="Recordings" />
+          <NavigationProperty Name="Doctors" Relationship="Self.UserDoctors" FromRole="Users" ToRole="Doctors" />
+        </EntityType>
+        <Association Name="FK_dbo_HistoryVisitings_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="HistoryVisitings" Type="Self.HistoryVisitings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="HistoryVisitings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_MedCards_dbo_Users_ID">
+          <End Role="Users" Type="Self.Users" Multiplicity="1" />
+          <End Role="MedCards" Type="Self.MedCards" Multiplicity="0..1" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="MedCards">
+              <PropertyRef Name="ID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_dbo_Recordings_dbo_Users_UserId">
+          <End Role="Users" Type="Self.Users" Multiplicity="1">
+            <OnDelete Action="Cascade" />
+          </End>
+          <End Role="Recordings" Type="Self.Recordings" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Users">
+              <PropertyRef Name="Id" />
+            </Principal>
+            <Dependent Role="Recordings">
+              <PropertyRef Name="UserId" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="UserDoctors">
+          <End Role="Doctors" Type="Self.Doctors" Multiplicity="*" />
+          <End Role="Users" Type="Self.Users" Multiplicity="*" />
+        </Association>
+        <EntityContainer Name="Kulnis_KPEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Doctors" EntityType="Self.Doctors" />
+          <EntitySet Name="HistoryVisitings" EntityType="Self.HistoryVisitings" />
+          <EntitySet Name="MedCards" EntityType="Self.MedCards" />
+          <EntitySet Name="Recordings" EntityType="Self.Recordings" />
+          <EntitySet Name="Users" EntityType="Self.Users" />
+          <AssociationSet Name="FK_dbo_HistoryVisitings_dbo_Users_UserId" Association="Self.FK_dbo_HistoryVisitings_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="HistoryVisitings" EntitySet="HistoryVisitings" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_MedCards_dbo_Users_ID" Association="Self.FK_dbo_MedCards_dbo_Users_ID">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="MedCards" EntitySet="MedCards" />
+          </AssociationSet>
+          <AssociationSet Name="FK_dbo_Recordings_dbo_Users_UserId" Association="Self.FK_dbo_Recordings_dbo_Users_UserId">
+            <End Role="Users" EntitySet="Users" />
+            <End Role="Recordings" EntitySet="Recordings" />
+          </AssociationSet>
+          <AssociationSet Name="UserDoctors" Association="Self.UserDoctors">
+            <End Role="Doctors" EntitySet="Doctors" />
+            <End Role="Users" EntitySet="Users" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="Хранилище Kulnis_KPModelContainer" CdmEntityContainer="Kulnis_KPEntities">
+          <EntitySetMapping Name="Doctors">
+            <EntityTypeMapping TypeName="Kulnis_KPModel.Doctors">
+              <MappingFragment StoreEntitySet="Doctors">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Post" ColumnName="Post" />
+                <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+                <ScalarProperty Name="Evenday_start" ColumnName="Evenday_start" />
+                <ScalarProperty Name="Evenday_end" ColumnName="Evenday_end" />
+                <ScalarProperty Name="Oddday_start" ColumnName="Oddday_start" />
+                <ScalarProperty Name="Oddday_end" ColumnName="Oddday_end" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="HistoryVisitings">
+            <EntityTypeMapping TypeName="Kulnis_KPModel.HistoryVisitings">
+              <MappingFragment StoreEntitySet="HistoryVisitings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+                <ScalarProperty Name="VisitDay" ColumnName="VisitDay" />
+                <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
+                <ScalarProperty Name="Info" ColumnName="Info" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="MedCards">
+            <EntityTypeMapping TypeName="Kulnis_KPModel.MedCards">
+              <MappingFragment StoreEntitySet="MedCards">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="Name" ColumnName="Name" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="Patronymic" ColumnName="Patronymic" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="BDay" ColumnName="BDay" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Street" ColumnName="Street" />
+                <ScalarProperty Name="House" ColumnName="House" />
+                <ScalarProperty Name="Housing" ColumnName="Housing" />
+                <ScalarProperty Name="Flat" ColumnName="Flat" />
+                <ScalarProperty Name="Image" ColumnName="Image" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Recordings">
+            <EntityTypeMapping TypeName="Kulnis_KPModel.Recordings">
+              <MappingFragment StoreEntitySet="Recordings">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="FIO" ColumnName="FIO" />
+                <ScalarProperty Name="Doctor" ColumnName="Doctor" />
+                <ScalarProperty Name="Cabinet" ColumnName="Cabinet" />
+                <ScalarProperty Name="VisitDay" ColumnName="VisitDay" />
+                <ScalarProperty Name="VisitTime" ColumnName="VisitTime" />
+                <ScalarProperty Name="UserId" ColumnName="UserId" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Users">
+            <EntityTypeMapping TypeName="Kulnis_KPModel.Users">
+              <MappingFragment StoreEntitySet="Users">
+                <ScalarProperty Name="Id" ColumnName="Id" />
+                <ScalarProperty Name="RecordingId" ColumnName="RecordingId" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="Surname" ColumnName="Surname" />
+                <ScalarProperty Name="BDay" ColumnName="BDay" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="Login" ColumnName="Login" />
+                <ScalarProperty Name="Password" ColumnName="Password" />
+                <ScalarProperty Name="IsAdmin" ColumnName="IsAdmin" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <AssociationSetMapping Name="UserDoctors" TypeName="Kulnis_KPModel.UserDoctors" StoreEntitySet="UserDoctors">
+            <EndProperty Name="Doctors">
+              <ScalarProperty Name="Id" ColumnName="Doctor_Id" />
+            </EndProperty>
+            <EndProperty Name="Users">
+              <ScalarProperty Name="Id" ColumnName="User_Id" />
+            </EndProperty>
+          </AssociationSetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="Нет" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

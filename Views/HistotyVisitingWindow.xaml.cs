@@ -82,22 +82,5 @@ namespace CourseProjectWPF.Views
         {
             ShowHistory();
         }
-
-        //private void onlyDig(object sender, TextCompositionEventArgs e)
-        //{
-        //    e.Handled = IsStringNumeric(e.Text);
-        //}
-
-        //// check string has numbers
-        //bool IsStringNumeric(string str)
-        //{
-        //    return Regex.IsMatch(str, "[^0-9]+");
-        //}
-
-        //private void textbox_restrictSpace(object sender, KeyEventArgs e)
-        //{
-        //    if (e.Key == Key.Space)
-        //        e.Handled = true;
-        //}
     }
 }

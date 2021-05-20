@@ -2,18 +2,10 @@
 using CourseProjectWPF.DB;
 using CourseProjectWPF.Models;
 using System;
-using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
 using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace CourseProjectWPF.Views
 {
@@ -39,8 +31,7 @@ namespace CourseProjectWPF.Views
         {
             userr = user;
             using (MyDbContext db = new MyDbContext())
-            {
-                
+            {                
                 card = db.MedCards.Where(b => b.ID == userr.Id).FirstOrDefault();
             }
             FIO.Text ="Пациент :" + " " + card.Surname + " " + card.Name + " " + card.Patronymic;
@@ -169,9 +160,7 @@ namespace CourseProjectWPF.Views
                     }
                 }
             }
-            catch (Exception)
-            {
-            }
+            catch (Exception){}            
         }
 
         private void DelRecording_Click(object sender, RoutedEventArgs e)
@@ -194,9 +183,62 @@ namespace CourseProjectWPF.Views
                         MaterialMessageBox.Show("Такие даты отсуствуют", "Уведомление");                    
                 }
             }
-            catch (Exception)
+            catch (Exception){}
+        }
+
+        private void buttonSearch_Click(object sender, RoutedEventArgs e)
+        {
+            try
             {
+                using (MyDbContext db = new MyDbContext())
+                {                   
+                    // first select all not archived patiens
+                    IQueryable<HistoryVisiting> queryable = db.HistoryVisitings.Where(p => p.UserId == userr.Id);
+                    
+                    // if year of birth field not empty
+                    if (!string.IsNullOrWhiteSpace(NumberOfMonth.Text))
+                    {
+                        int month = NumberOfMonth.SelectedIndex;
+                        if (month == 0)
+                        {                           
+                            var startDate = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+                            var endDate = startDate.AddMonths(1).AddDays(-1);   
+                            queryable = queryable.Where(p => p.VisitDay >= startDate && p.VisitDay <= endDate);
+                        }                                                     
+                        else if(month == 1)
+                        {
+                            var startDate = DateTime.Now.Date.AddMonths(-6);
+                            var endDate = DateTime.Now.Date;                            
+                            queryable = queryable.Where(p => p.VisitDay >= startDate && p.VisitDay <= endDate);
+                        }                            
+                        else if (month == 2)
+                        {
+                            var startDate = DateTime.Now.Date.AddYears(-2);
+                            var endDate = DateTime.Now.Date;
+                            queryable = queryable.Where(p => p.VisitDay >= startDate && p.VisitDay <= endDate);
+                        }                            
+                        else if (month == 3)
+                        {
+                            var startDate = DateTime.Now.Date.AddYears(-10);
+                            var endDate = DateTime.Now.Date;
+                            queryable = queryable.Where(p => p.VisitDay >= startDate && p.VisitDay <= endDate);
+                        }                            
+                    }
+                    // put query result to data grid table
+                    datagridHistory.ItemsSource = queryable.ToList();
+                }
             }
+            catch (Exception) { }
+        }
+
+        //очистить
+        private void buttonEraser_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                ShowHistory();
+            }
+            catch (Exception) { }
         }
 
         private void datagridHistory_MouseDoubleClick(object sender, MouseButtonEventArgs e)

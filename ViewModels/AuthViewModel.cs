@@ -1,5 +1,6 @@
 ﻿using CourseProjectWPF.DB;
 using CourseProjectWPF.Models;
+using CourseProjectWPF.Repositories;
 using CourseProjectWPF.Views;
 using DevExpress.Mvvm;
 using System;
@@ -17,6 +18,7 @@ namespace CourseProjectWPF.ViewModels
 {
     class AuthViewModel : ViewModelBase
     {
+        EFUserRepository eFUserRepository = new EFUserRepository();
         public string str { get; set; }
         public string Login { get; set; }
         public string Password { get; set; }
@@ -84,10 +86,12 @@ namespace CourseProjectWPF.ViewModels
                 {   
                     try
                     {
-                        
+                        //User tmp = eFUserRepository.getLogin(Login);
+                        //tmp = eFUserRepository.getByPs(Password);
                         string Pass = DB.DB.Hash(Password);
-                        IsUser = db.Users.Where(b => b.Login == Login && b.Password == Pass).FirstOrDefault();
-                        IsAdmin = db.Users.Where(b => b.Login == Login && b.Password == Pass && b.IsAdmin == true).FirstOrDefault();
+                        //User tmp = eFUserRepository.getUser(Login,Pass);
+                        IsUser = eFUserRepository.getUser(Login, Pass);
+                        IsAdmin = eFUserRepository.getAdmin(Login, Pass);
                         if (IsUser != null || IsAdmin != null)
                         {
                             App.CurrentUser = IsUser;

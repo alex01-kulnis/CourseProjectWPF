@@ -10,7 +10,6 @@ namespace CourseProjectWPF.Models
 {
     public class Recording
     {
-
         public int Id { get; set; }
         public string FIO { get; set; }
         public string Doctor { get; set; }
