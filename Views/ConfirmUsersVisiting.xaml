@@ -114,7 +114,7 @@
                     Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="СhangeHistory_Click"/>
         <Button x:Name="buttonConfirmVisiting" Content="Подтвердить" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="1508,725,0,11" Foreground="Black" ToolTip="Подтвердить посещение пациента" Width="137" Height="36" FontSize="16"
                     Background="#FF33C2F7" BorderBrush="#5AA9B0" Click="ConfirmVisiting_Click"/>
-        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="780,540,0,193" Foreground="Black" ToolTip="Удалить запись" Width="107" Height="39"
+        <Button x:Name="buttonDelRecording" Content="{materialDesign:PackIcon Kind=DeleteEmpty,Size=24}" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="780,540,0,193" Foreground="Black" ToolTip="Очистить" Width="107" Height="39"
                     Background="red" BorderBrush="#5AA9B0" FontSize="16" Click="DelRecording_Click"/>
     </Grid>
 </Window>

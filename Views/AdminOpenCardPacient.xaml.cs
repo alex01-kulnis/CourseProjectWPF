@@ -251,7 +251,7 @@ namespace CourseProjectWPF.Views
                 {                    
                     MedCard test = db.MedCards.FirstOrDefault(p => p.ID == userr.Id);
 
-                    if (Bday_textbox.SelectedDate < DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
+                    if (Bday_textbox.SelectedDate <= DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
                     {
                         if (test == null)
                         {

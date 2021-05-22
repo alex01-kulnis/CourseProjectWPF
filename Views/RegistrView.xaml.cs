@@ -46,10 +46,8 @@ namespace CourseProjectWPF.Views
                 bool Registration = true;
                 
                 try
-                {
-                    string str = Bday_textbox.ToString();
-                    int a = Convert.ToInt32(str = str.Substring(6, 4));
-                    if (a < DateTime.Now.Year-13  && a >= 1900)
+                {                    
+                    if (Bday_textbox.SelectedDate <= DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
                     {
                         SqlParameter param = new SqlParameter("@Login", login_textbox.Text);
                         var users = db.Database.SqlQuery<User>("SELECT * FROM Users WHERE Login LIKE @Login", param);

@@ -245,7 +245,7 @@ namespace CourseProjectWPF.Views
                     User thisUser = db.Users.Find(App.CurrentUser.Id);
                     MedCard test = db.MedCards.FirstOrDefault(p => p.ID == thisUser.Id);
                                                            
-                    if (Bday_textbox.SelectedDate < DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
+                    if (Bday_textbox.SelectedDate <= DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
                     {
                         if (test == null)
                         {

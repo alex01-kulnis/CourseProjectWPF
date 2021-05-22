@@ -99,7 +99,7 @@
                     </StackPanel>
                     <StackPanel Margin="0 10" Orientation="Horizontal">
                         <Label FontSize="20" Width="60" Height="40" Content="Дом :" Background="White" Foreground="Gray" ></Label>
-                        <TextBox  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center"  
+                        <TextBox  BorderThickness="1" BorderBrush="Black"  Width="60" Height="40" VerticalContentAlignment="Center" MaxLength="4" 
                      Background="White"   SelectionBrush="{x:Null}" FontSize="20" Margin="10 0 20 0" PreviewTextInput="onlyDig"
                  materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="House_textbox" TextChanged="House_textbox_TextChanged"/>
                     </StackPanel>
@@ -111,7 +111,7 @@
                     </StackPanel>
                     <StackPanel Margin="0 10" Orientation="Horizontal">
                         <Label FontSize="20" Width="108" Height="40" Content="Квартира :" Background="White" Foreground="Gray" ></Label>
-                        <TextBox  BorderThickness="1" BorderBrush="Black"  Width="54" Height="40" VerticalContentAlignment="Center"  
+                        <TextBox  BorderThickness="1" BorderBrush="Black"  Width="54" Height="40" VerticalContentAlignment="Center" MaxLength="4"   
                      Background="White" SelectionBrush="{x:Null}" FontSize="20" Margin="15 0 20 0" PreviewTextInput="onlyDig"
                  materialDesign:HintAssist.Hint="15" PreviewKeyDown="textbox_restrictSpace" x:Name="Flat_textbox" />
                     </StackPanel>
@@ -134,7 +134,7 @@
                             <Button x:Name="AddPhotoButton" Content="Выбрать фото" HorizontalAlignment="Center" VerticalAlignment="Center"  
                                 Margin="0 70 0 10" Width="470" Height="50" FontSize="20" BorderBrush="Black" Foreground="Black" Click="AddPhotoButton_Click"/>
                         </StackPanel>
-                        <Button x:Name="SaveButton" Content="Сохрнаить\Изменить"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="150 180 0 25" 
+                        <Button x:Name="SaveButton" Content="Сохранить\Изменить"  HorizontalAlignment="Center" VerticalAlignment="Center"  Margin="150 180 0 25" 
                             Width="240" Height="45" FontSize="20" Background="#FF33C2F7" BorderBrush="#5AA9B0" Foreground="Black"
                             ToolTip="Заполните" Click="Save_Click" />
                     </StackPanel>

@@ -1,5 +1,3 @@
-use master; 
-
 use Kulnis_Kp;
 
 insert into  Users  (FirstName, Surname, Gender, Login, Password,Bday,IsAdmin )

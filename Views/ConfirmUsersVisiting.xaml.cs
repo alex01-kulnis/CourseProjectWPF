@@ -243,17 +243,23 @@ namespace CourseProjectWPF.Views
 
         private void datagridHistory_MouseDoubleClick(object sender, MouseButtonEventArgs e)
         {
-            // open add patient window with filled fields
-            var recording = datagridHistory.SelectedItem as HistoryVisiting;
-            InfoForCheck.Text = recording.Info;
+            try
+            {
+                // open add patient window with filled fields
+                var recording = datagridHistory.SelectedItem as HistoryVisiting;
+                InfoForCheck.Text = recording.Info;
+            }
+            catch (Exception){}            
         }
 
         private void Back_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            try
+            {
+                Close();
+            }
+            catch (Exception){}
         }
-        #endregion
-
-        
+        #endregion        
     }
 }
