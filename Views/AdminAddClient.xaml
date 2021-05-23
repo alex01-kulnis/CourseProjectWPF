@@ -35,7 +35,7 @@
                   materialDesign:HintAssist.Hint="Кузнецов"/>
 
         <Label FontSize="14" Content="Дата рождения" Background="White" Foreground="Gray"  Margin="35,172,255,365"></Label>
-        <DatePicker DisplayDateStart="1900/01/09" DisplayDateEnd="2004/12/31"  FontSize="14" BorderThickness="0,0,0,1" BorderBrush="Black" x:Name="Bday_textbox" Margin="40,197,45,325" 
+        <DatePicker DisplayDateStart="1900/01/09" DisplayDateEnd="{Binding DateTime.Now}"  FontSize="14" BorderThickness="0,0,0,1" BorderBrush="Black" x:Name="Bday_textbox" Margin="40,197,45,325" 
                    materialDesign:HintAssist.Hint="21.02.1983" SelectedDateChanged="Bday_textbox_SelectedDateChanged"  />
                    
         <Label FontSize="14" Content="Пол" Background="White" Foreground="Gray"  Margin="40,247,250,295"></Label>

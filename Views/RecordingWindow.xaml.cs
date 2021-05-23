@@ -73,9 +73,9 @@ namespace CourseProjectWPF.Views
             try
             {                
                 if (DataVisiting.Text != "")
-                {
+                {                                                   
                     DateTime a = DateTime.ParseExact(DataVisiting.Text, "dd.MM.yyyy", System.Globalization.CultureInfo.InvariantCulture);                    
-                    if (a.Month <= DateTime.Now.AddMonths(2).Month && a.Date > DateTime.Now.Date && a.Year <= DateTime.Now.Year)
+                    if (/*a.Month <= DateTime.Now.AddMonths(2).Month && a.Date > DateTime.Now.Date && a.Year <= DateTime.Now.Year*/ a.Date >= DateTime.Now.Date && a.Date <= DateTime.Now.Date.AddMonths(2))
                     {
                         if (a.DayOfWeek.ToString() == "Saturday" || a.DayOfWeek.ToString() == "Sunday")
                             Error_Message.Text = "Врач не работает в этот день";
@@ -95,7 +95,7 @@ namespace CourseProjectWPF.Views
                     }
                     else
                     {
-                        if (a.Date <= DateTime.Now.Date)
+                        if (a.Date < DateTime.Now.Date)
                         {
                             Error_Message.Text = "Некорректная дата";
                         }                            
@@ -144,9 +144,7 @@ namespace CourseProjectWPF.Views
                     }
                 }
             }
-            catch (Exception)
-            {
-            }           
+            catch (Exception){}           
         }
     }
 }

@@ -14,7 +14,11 @@ namespace CourseProjectWPF.Repositories
 
         public EFUserRepository()
         {
-            context = new MyDbContext();
+            try
+            {
+                context = new MyDbContext();
+            }
+            catch (Exception){}            
         }
 
         public User getByLogin(string login)

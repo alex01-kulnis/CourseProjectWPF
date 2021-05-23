@@ -40,9 +40,9 @@
                    materialDesign:HintAssist.Hint="21.02.1983" SelectedDateChanged="Bday_textbox_SelectedDateChanged"
                     SelectedDateFormat="Short" />
 
-        <Label FontSize="14" Content="Пол" Background="White" Foreground="Gray"  Margin="40,247,250,295"></Label>
+        <Label FontSize="14" Content="Пол" Background="White" Foreground="Gray"  Margin="40,247,250,295"/>
         <ComboBox Name="Gender" BorderThickness="1" BorderBrush="Black"  Height="30" Background="White" 
-                  Margin="40,275,190,260" Text="{Binding Gender}" materialDesign:HintAssist.Hint="Мужской">
+                  Margin="40,275,190,260"  materialDesign:HintAssist.Hint="Мужской">
             <ComboBoxItem  IsSelected="True">
                 Мужчина
             </ComboBoxItem>

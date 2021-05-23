@@ -59,10 +59,8 @@ namespace CourseProjectWPF.Views
                 bool Change = true;
 
                 try
-                {
-                    string str = Bday_textbox.ToString();
-                    int a = Convert.ToInt32(str = str.Substring(6, 4));
-                    if (a < 2006 && a >= 1900)
+                {      
+                    if (Bday_textbox.SelectedDate <= DateTime.Now.Date && Bday_textbox.SelectedDate > DateTime.Now.AddYears(-150).Date)
                     {
                         IsUser = db.Users.Where(b => b.Login == login_textbox.Text && b.IsAdmin == false).FirstOrDefault();
                         //IsAdmin = db.Users.Where(b => b.Login == login_textbox.Text && b.IsAdmin == true ).FirstOrDefault();

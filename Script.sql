@@ -28,6 +28,6 @@ insert into  HistoryVisitings( FIO, Doctor, Cabinet, VisitDay,VisitTime,Info,Use
 	values	( 'Иванова В.К.', 'Врач-терапевт', '102','13-04-2021', '10:00','info',1),
 			( 'Иванова В.К.', 'Врач-терапевт', '102','15-12-2020', '10:00','info',1);
 
-insert into  HistoryVisitings( FIO, Doctor, Cabinet, VisitDay,VisitTime,Info,UserId )
-	values	( 'Иванова В.К.', 'Врач-терапевт', '102','13-04-2020', '10:00','info',1);
+insert into  HistoryVisitings( FIO, Doctor, Cabinet, VisitDay,VisitTime,Info,UserId)
+	values	( 'Иванова В.К.', 'Врач-терапевт', '102','01-01-2012', '10:00','info',15);
 		

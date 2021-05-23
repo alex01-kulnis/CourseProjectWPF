@@ -112,8 +112,8 @@ namespace CourseProjectWPF.ViewModels
 				}
                 // put query result to data grid table
                 info.Add(queryable.FirstOrDefault());
-                
-                //datagridPatiens.ItemsSource = queryable.ToList();
+
+                //info = (ObservableCollection<User>)queryable;
             }
 		}
 
