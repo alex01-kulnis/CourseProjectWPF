@@ -39,9 +39,7 @@ namespace CourseProjectWPF.DB
                 loader.ShowDialog();
                 loader.Close();
             }
-            catch (Exception)
-            {
-            }            
+            catch (Exception){}            
         }
     }
 }

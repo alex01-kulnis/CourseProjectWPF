@@ -190,6 +190,7 @@ namespace CourseProjectWPF.Views
         {
             try
             {
+                InfoForCheck.Text = "";
                 using (MyDbContext db = new MyDbContext())
                 {                   
                     // first select all not archived patiens
@@ -236,6 +237,7 @@ namespace CourseProjectWPF.Views
         {
             try
             {
+                InfoForCheck.Text = "";
                 ShowHistory();
             }
             catch (Exception) { }
@@ -245,6 +247,9 @@ namespace CourseProjectWPF.Views
         {
             try
             {
+                // check patient was chosen in list
+                if (datagridHistory.SelectedItems.Count <= 0)
+                    return;
                 // open add patient window with filled fields
                 var recording = datagridHistory.SelectedItem as HistoryVisiting;
                 InfoForCheck.Text = recording.Info;

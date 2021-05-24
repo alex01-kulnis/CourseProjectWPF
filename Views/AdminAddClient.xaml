@@ -60,7 +60,7 @@
                      PasswordChanged="password_box_PasswordChanged" materialDesign:HintAssist.Hint="Не менее 8 символов"/>
 
         <TextBlock Name="ErrorMessage" Foreground="red" Style="{StaticResource MaterialDesignBody2TextBlock}" 
-                   Margin="40,452,135,93" />
+                   Margin="40,452,135,93" TextDecorations="Underline"/>
 
         <Button Name="Reg" Height="Auto" Margin="40,480,45,50"  materialDesign:ButtonAssist.CornerRadius="8" Content="Зарегистрировать" Click="Reg_Click" 
                  >

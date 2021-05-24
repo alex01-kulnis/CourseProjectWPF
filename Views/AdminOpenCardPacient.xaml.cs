@@ -37,6 +37,7 @@ namespace CourseProjectWPF.Views
         public AdminOpenCardPacient(User user) : this()
         {
             userr = user;
+            MedCardNumber.Content = "№ " + userr.Id.ToString();
             using (MyDbContext db = new MyDbContext())
             {
                 card = db.MedCards.Where(b => b.ID == userr.Id).FirstOrDefault();

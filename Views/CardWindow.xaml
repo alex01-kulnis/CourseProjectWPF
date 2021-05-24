@@ -18,7 +18,12 @@
             </StackPanel>
             
             <StackPanel Margin="75 0 0 15" Orientation="Horizontal" Height="40" VerticalAlignment="Top" HorizontalAlignment="Left" >
-                <Label FontSize="24" Content="Заполните форму :"  Foreground="Black"/>
+                <StackPanel Orientation="Horizontal">
+                    <Label FontSize="24" Content="Заполните форму :"  Foreground="Black"/>
+                </StackPanel>
+                <StackPanel Orientation="Horizontal" Margin="750 0 0 0"  VerticalAlignment="Top" HorizontalAlignment="Left">
+                    <Label x:Name="MedCardNumber" FontSize="14" Foreground="Red"/>
+                </StackPanel>
             </StackPanel>
 
             <StackPanel Orientation="Horizontal" Height="60" VerticalAlignment="Top" HorizontalAlignment="Center">

@@ -39,10 +39,11 @@ namespace CourseProjectWPF.Views
         void ShowInfo()
         {
             try
-            {
+            {                
                 using (MyDbContext db = new MyDbContext())
                 {
                     User thisUser = db.Users.Find(App.CurrentUser.Id);
+                    MedCardNumber.Content = "№ " + thisUser.Id.ToString();
                     MedCard a = new MedCard();
                     a = db.MedCards.Where(b => b.ID == thisUser.Id).FirstOrDefault();
                     if (a != null)
