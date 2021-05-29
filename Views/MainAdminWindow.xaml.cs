@@ -341,7 +341,5 @@ namespace CourseProjectWPF.Views
             }
         }
         #endregion
-
-
     }
 }

@@ -28,7 +28,7 @@ namespace CourseProjectWPF.Views
             DataContext = a;
             WindowStartupLocation = WindowStartupLocation.CenterScreen;
           
-            password_box.Password = "11111111";
+            //password_box.Password = "11111111";
         }
 
         private void password_box_PasswordChanged(object sender, RoutedEventArgs e)
